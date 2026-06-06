@@ -1,26 +1,32 @@
-# Claude Code Game Studios -- Game Studio Agent Architecture
+# La Base de Sky — Game Studio Agent Architecture
 
-Indie game development managed through 49 coordinated Claude Code subagents.
-Each agent owns a specific domain, enforcing separation of concerns and quality.
+Pokémon game development using RPG Maker XP + Pokémon Essentials v21.1/v22.
+Managed through coordinated Claude Code agents adapted for La Base de Sky.
 
 ## Technology Stack
 
-- **Engine**: [CHOOSE: Godot 4 / Unity / Unreal Engine 5]
-- **Language**: [CHOOSE: GDScript / C# / C++ / Blueprint]
+- **Engine**: RPG Maker XP + Pokémon Essentials v21.1/v22
+- **Language**: Ruby (RGSS - RPG Game Scripting System)
 - **Version Control**: Git with trunk-based development
-- **Build System**: [SPECIFY after choosing engine]
-- **Asset Pipeline**: [SPECIFY after choosing engine]
+- **Build System**: RPG Maker XP (Game.exe) + scripts_combine.rb
+- **Asset Pipeline**: RPG Maker XP (Graphics/, Audio/) + PBS files
+- **Reference Documentation**: wiki-la-base-de-sky/wiki_markdown/
 
-> **Note**: Engine-specialist agents exist for Godot, Unity, and Unreal with
-> dedicated sub-specialists. Use the set matching your engine.
+> **Note**: This framework has been adapted from the original Claude Code Game Studios
+> to work specifically with La Base de Sky (Pokémon Essentials in Spanish).
+> Engine-specific agents for Godot/Unity/Unreal have been disabled and replaced
+> with Essentials/Ruby/PBS specialists.
 
 ## Project Structure
 
 @.claude/docs/directory-structure.md
 
-## Engine Version Reference
+## Wiki Reference
 
-@docs/engine-reference/godot/VERSION.md
+@.claude/docs/wiki-reference.md
+
+> **MANDATORY**: Before suggesting implementations, consult the wiki reference above.
+> The wiki is the authoritative source for La Base de Sky implementation patterns.
 
 ## Technical Preferences
 
@@ -42,8 +48,8 @@ Every task follows: **Question -> Options -> Decision -> Draft -> Approval**
 
 See `docs/COLLABORATIVE-DESIGN-PRINCIPLE.md` for full protocol and examples.
 
-> **First session?** If the project has no engine configured and no game concept,
-> run `/start` to begin the guided onboarding flow.
+> **First session?** Run `/setup-essentials` to configure the project for La Base de Sky,
+> then `/start` to begin the guided onboarding flow.
 
 ## Coding Standards
 
