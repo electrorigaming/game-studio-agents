@@ -1,6 +1,6 @@
 ---
 name: design-system
-description: "Guided, section-by-section GDD authoring for a single game system. Gathers context from existing docs, walks through each required section collaboratively, cross-references dependencies, and writes incrementally to file."
+description: "Guided, section-by-section GDD authoring for a single game system in La Base de Sky (Pokémon Essentials). Gathers context from existing docs and wiki, walks through each required section collaboratively, cross-references dependencies, and writes incrementally to file."
 argument-hint: "<system-name> [--review full|lean|solo]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Task, AskUserQuestion, TodoWrite
@@ -8,6 +8,23 @@ model: sonnet
 ---
 
 When this skill is invoked:
+
+## 0. La Base de Sky Context
+
+This project uses **RPG Maker XP + Pokémon Essentials v21.1/v22 (La Base de Sky)**.
+All system designs must be feasible within these constraints.
+
+**MANDATORY**: Before designing any system, consult the relevant wiki sections:
+- `wiki-la-base-de-sky/wiki_markdown/02-Pokemon/` — Pokémon, moves, abilities, items
+- `wiki-la-base-de-sky/wiki_markdown/03-Combate/` — Battle system and encounters
+- `wiki-la-base-de-sky/wiki_markdown/04-Interfaz/` — UI and MUI
+- `wiki-la-base-de-sky/wiki_markdown/05-Mundo/` — Maps and events
+- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/` — PBS, plugins, scripts
+
+Use the wiki to verify that your design aligns with existing Essentials patterns
+and to identify what requires custom scripting vs. what can use built-in features.
+
+---
 
 ## 1. Parse Arguments & Validate
 

@@ -1,6 +1,6 @@
 ---
 name: brainstorm
-description: "Guided game concept ideation — from zero idea to a structured game concept document. Uses professional studio ideation techniques, player psychology frameworks, and structured creative exploration."
+description: "Guided Pokémon game concept ideation for La Base de Sky — from zero idea to a structured game concept document. Uses professional studio ideation techniques, player psychology frameworks, and structured creative exploration adapted for Pokémon Essentials."
 argument-hint: "[genre or theme hint, or 'open'] [--review full|lean|solo]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, WebSearch, Task, AskUserQuestion
@@ -41,6 +41,10 @@ When this skill is invoked:
    - Build on each other — "yes, and..." responses, not "but..."
    - Use constraints as creative fuel — limitations often produce the best ideas
    - Time-box each phase — keep momentum, don't over-deliberate early
+
+   **La Base de Sky Context**: This project uses RPG Maker XP + Pokémon Essentials v21.1/v22.
+   All concepts must be feasible within these constraints. Consult
+   `wiki-la-base-de-sky/wiki_markdown/` for implementation patterns.
 
 ---
 
@@ -240,19 +244,45 @@ who this game is actually for:
 Ground the concept in reality:
 
 - **Target platform**: Use `AskUserQuestion` — "What platforms are you targeting for this game?"
-  Options: `PC (Steam / Epic)` / `Mobile (iOS / Android)` / `Console` / `Web / Browser` / `Multiple platforms`
-  Record the answer — it directly shapes the engine recommendation and will be passed to `/setup-engine`.
-  Note platform implications if relevant (e.g., mobile means Unity is strongly preferred; console means Godot has limitations; web means Godot exports cleanly).
+  Options: `PC (Windows)` / `Mobile (Android via JoiPlay)` / `Both PC and Mobile`
+  Record the answer — La Base de Sky supports Windows natively and Android via JoiPlay.
+  Note platform implications if relevant (e.g., mobile may have performance constraints).
 
-- **Engine experience**: Use `AskUserQuestion` — "Do you already have an engine you work in?"
-  Options: `Godot` / `Unity` / `Unreal Engine 5` / `No preference — help me decide`
-  - If they pick an engine → record it as their preference and move on. Do NOT second-guess it.
-  - If "No preference" → tell them: "Run `/setup-engine` after this session — it will walk you through the full decision based on your concept and platform target." Do not make a recommendation here.
-- **Art pipeline**: What's the art style and how labor-intensive is it?
-- **Content scope**: Estimate level/area count, item count, gameplay hours
+- **Engine**: Already defined — **RPG Maker XP + Pokémon Essentials v21.1/v22 (La Base de Sky)**
+  No engine selection needed. If the user asks about other engines, explain that this project
+  is specifically configured for La Base de Sky and redirect to the concept.
+
+- **Pokémon Essentials Feasibility**: Use `AskUserQuestion` — "Which Essentials features are critical for your concept?"
+  Options: `Custom Pokémon/Forms` / `Custom Battle Mechanics` / `Custom UI/Menus` / `Custom Overworld Mechanics` / `Standard Essentials features`
+  - Record the answer — it shapes the technical scope
+  - Consult `wiki-la-base-de-sky/wiki_markdown/` to verify feature feasibility
+  - Flag any features that require extensive custom scripting
+
+- **Art pipeline**: What's the art style? Consider RPG Maker XP constraints:
+  - Sprite-based graphics (Characters, Battlers, Icons)
+  - Tileset-based maps
+  - Windowskins for UI
+  - What assets need to be custom vs. can use existing Essentials assets?
+
+- **Content scope**: Estimate:
+  - Number of custom Pokémon (species, forms)
+  - Number of custom moves/abilities
+  - Number of maps/areas
+  - Number of trainers/NPCs
+  - Estimated gameplay hours
+
 - **MVP definition**: What's the absolute minimum build that tests "is the
-  core loop fun?"
+  core loop fun?" For a Pokémon game, this typically includes:
+  - Starter selection
+  - First route with wild encounters
+  - First trainer battle
+  - Basic menu and Pokémon management
+
 - **Biggest risks**: Technical risks, design risks, market risks
+  - Technical: Custom battle mechanics, complex UI, performance on mobile
+  - Design: Balance, content volume, player retention
+  - Market: Differentiation from other Pokémon fangames
+
 - **Scope tiers**: What's the full vision vs. what ships if time runs out?
 
 **Review mode check** — apply before spawning TD-FEASIBILITY:
@@ -262,7 +292,7 @@ Ground the concept in reality:
 
 **After identifying biggest technical risks, spawn `technical-director` via Task using gate TD-FEASIBILITY (`.claude/docs/director-gates.md`) before scope tiers are defined.**
 
-Pass: core loop description, platform target, engine choice (or "undecided"), list of identified technical risks.
+Pass: core loop description, platform target, engine (RPG Maker XP + Essentials), list of identified technical risks, required Essentials features.
 
 Present the assessment to the user. If HIGH RISK, offer to revisit scope before finalising. If CONCERNS, note them and continue.
 
@@ -311,7 +341,7 @@ If yes, generate the document using the template at `.claude/docs/templates/game
    pre-production pipeline). List ALL steps — do not abbreviate or truncate:
 
 **Path A — Design-First** (recommended if the concept is well-defined):
-   1. "Run `/setup-engine` to configure the engine and populate version-aware reference docs"
+   1. "Run `/setup-essentials` to configure the project for La Base de Sky"
    2. "Run `/art-bible` to create the visual identity specification — do this BEFORE writing GDDs. **The art bible is required before the Technical Setup gate.** It gates asset production and shapes technical architecture decisions (rendering, VFX, UI systems)."
    3. "Use `/design-review design/gdd/game-concept.md` to validate concept completeness before going downstream"
    4. "Discuss vision with the `creative-director` agent for pillar refinement"
@@ -323,14 +353,14 @@ If yes, generate the document using the template at `.claude/docs/templates/game
    10. "Validate readiness to advance with `/gate-check` — phase gate before committing to production"
 
 **Path B — Prototype-First** (use if the core mechanic is unproven or the concept needs validation):
-   1. "Run `/setup-engine` to configure the engine"
+   1. "Run `/setup-essentials` to configure the project for La Base de Sky"
    2. "Run `/prototype [core-mechanic]` — validate the core idea is fun before writing any GDDs (1–3 days throwaway code)"
    3. "If prototype PROCEEDS: run `/art-bible`, then continue with Path A steps 5–10 above, using prototype learnings to inform your GDDs"
    4. "If prototype PIVOTS: return to `/brainstorm` with the learnings and reshape the concept"
    5. "After full design and architecture, build the `/vertical-slice` to validate production readiness before committing to sprints"
 
 7. **Output a summary** with the chosen concept's elevator pitch, pillars,
-   primary player type, engine recommendation, biggest risk, and file path.
+   primary player type, platform target, biggest risk, and file path.
 
 Verdict: **COMPLETE** — game concept created and handed off for next steps.
 
@@ -350,7 +380,7 @@ append this notice to the current response before continuing:
 ## Recommended Next Steps
 
 After the game concept is written, follow the pre-production pipeline in order:
-1. `/setup-engine` — configure the engine and populate version-aware reference docs
+1. `/setup-essentials` — configure the project for La Base de Sky
 2. `/art-bible` — establish visual identity before writing any GDDs
 3. `/map-systems` — decompose the concept into individual systems with dependencies
 4. `/design-system [first-system]` — author per-system GDDs in dependency order

@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: "Performs an architectural and quality code review on a specified file or set of files. Checks for coding standard compliance, architectural pattern adherence, SOLID principles, testability, and performance concerns."
+description: "Performs an architectural and quality code review for La Base de Sky (Pokémon Essentials). Checks for RGSS coding standards, PBS data validation, architectural pattern adherence, memory management, and performance concerns."
 argument-hint: "[path-to-file-or-directory]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash, Task, AskUserQuestion
@@ -14,22 +14,22 @@ Read the target file(s) in full. Read CLAUDE.md for project coding standards.
 
 ---
 
-## Phase 2: Identify Engine Specialists
+## Phase 2: Identify Essentials Specialists
 
-Read `.claude/docs/technical-preferences.md`, section `## Engine Specialists`. Note:
+Read `.claude/docs/technical-preferences.md`, section `## Essentials Specialists`. Note:
 
-- The **Primary** specialist (used for architecture and broad engine concerns)
-- The **Language/Code Specialist** (used when reviewing the project's primary language files)
-- The **Shader Specialist** (used when reviewing shader files)
-- The **UI Specialist** (used when reviewing UI code)
+- The **Primary** specialist: `essentials-specialist` (used for architecture and broad Essentials concerns)
+- The **Ruby/RGSS Specialist**: `ruby-rgss-specialist` (used when reviewing Ruby scripts)
+- The **PBS Specialist**: `pbs-compiler-specialist` (used when reviewing PBS data files)
+- The **UI Specialist**: `ui-programmer` (used when reviewing MUI/UI code)
 
-If the section reads `[TO BE CONFIGURED]`, no engine is pinned — skip engine specialist steps.
+If the section reads `[TO BE CONFIGURED]`, run `/setup-essentials` first.
 
 ---
 
 ## Phase 3: ADR Compliance Check
 
-**Argument:** `/code-review [file(s)]` may optionally include a story file path as the last argument (e.g., `/code-review src/combat/attack.gd production/epics/combat/story-001.md`). If a story path is provided, read it to extract the governing ADR reference.
+**Argument:** `/code-review [file(s)]` may optionally include a story file path as the last argument (e.g., `/code-review Plugins/MyPlugin/MyPlugin.rb production/epics/combat/story-001.md`). If a story path is provided, read it to extract the governing ADR reference.
 
 Search for ADR references in, in priority order:
 1. The story file (if provided as argument)
@@ -48,56 +48,72 @@ For each referenced ADR: read the file, extract the **Decision** and **Consequen
 
 ---
 
-## Phase 4: Standards Compliance
+## Phase 4: Standards Compliance (RGSS-Specific)
 
-Identify the system category (engine, gameplay, AI, networking, UI, tools) and evaluate:
+Identify the system category (Essentials architecture, gameplay, UI, plugins, PBS data) and evaluate:
 
 - [ ] Public methods and classes have doc comments
 - [ ] Cyclomatic complexity under 10 per method
 - [ ] No method exceeds 40 lines (excluding data declarations)
-- [ ] Dependencies are injected (no static singletons for game state)
-- [ ] Configuration values loaded from data files
-- [ ] Systems expose interfaces (not concrete class dependencies)
+- [ ] Use `alias` for method overriding (no direct monkey-patching)
+- [ ] Plugins are self-contained in `Plugins/[PluginName]/[PluginName].rb`
+- [ ] All game data from PBS files (no hardcoded values)
+- [ ] Use `:SPECIES`, `:MOVE`, `:ITEM` symbols (no numeric IDs)
+- [ ] Respect script section ordering
 
 ---
 
-## Phase 5: Architecture and SOLID
+## Phase 5: Architecture and Memory Management
 
 **Architecture:**
-- [ ] Correct dependency direction (engine <- gameplay, not reverse)
+- [ ] Correct dependency direction (plugins <- core, not reverse)
 - [ ] No circular dependencies between modules
 - [ ] Proper layer separation (UI does not own game state)
-- [ ] Events/signals used for cross-system communication
+- [ ] Essentials event hooks used when available
 - [ ] Consistent with established patterns in the codebase
 
-**SOLID:**
-- [ ] Single Responsibility: Each class has one reason to change
-- [ ] Open/Closed: Extendable without modification
-- [ ] Liskov Substitution: Subtypes substitutable for base types
-- [ ] Interface Segregation: No fat interfaces
-- [ ] Dependency Inversion: Depends on abstractions, not concretions
+**Memory Management (CRITICAL for RGSS):**
+- [ ] All `Sprite`, `Viewport`, `Window`, `Bitmap` objects are disposed
+- [ ] Disposed objects are set to `nil`
+- [ ] No orphaned sprites in update loops
+- [ ] Proper cleanup in scene transitions
 
 ---
 
-## Phase 6: Game-Specific Concerns
+## Phase 6: Game-Specific Concerns (Essentials)
 
-- [ ] Frame-rate independence (delta time usage)
-- [ ] No allocations in hot paths (update loops)
-- [ ] Proper null/empty state handling
-- [ ] Thread safety where required
-- [ ] Resource cleanup (no leaks)
+- [ ] Use `pbMessage(text)` for dialog (not `print` or `puts`)
+- [ ] Use `pbTransferPlayer` for map transfers
+- [ ] Use `pbFadeOutIn` for scene transitions
+- [ ] Global variables used correctly ($game_player, $game_variables, etc.)
+- [ ] No infinite loops in update methods
+- [ ] Save/load compatibility (data persists correctly)
 
 ---
 
-## Phase 7: Specialist Reviews (Parallel)
+## Phase 7: PBS Data Validation (if applicable)
+
+If reviewing PBS files:
+- [ ] Syntax correct (sections start with `[ID]`, fields are `key = value`)
+- [ ] No duplicate IDs
+- [ ] All cross-references valid
+- [ ] Required fields present
+- [ ] Lists comma-separated without spaces
+
+---
+
+## Phase 8: Specialist Reviews (Parallel)
 
 Spawn all applicable specialists simultaneously via Task — do not wait for one before starting the next.
 
-### Engine Specialists
+### Essentials Specialists
 
-If an engine is configured, determine which specialist applies to each file and spawn in parallel:
+Determine which specialist applies to each file and spawn in parallel:
 
-- Primary language files (`.gd`, `.cs`, `.cpp`) → Language/Code Specialist
+- Ruby scripts (`.rb`) → `ruby-rgss-specialist`
+- PBS data files (`PBS/*.txt`) → `pbs-compiler-specialist`
+- UI/MUI code → `ui-programmer`
+- General architecture → `essentials-specialist`
 - Shader files (`.gdshader`, `.hlsl`, shader graph) → Shader Specialist
 - UI screen/widget code → UI Specialist
 - Cross-cutting or unclear → Primary Specialist
