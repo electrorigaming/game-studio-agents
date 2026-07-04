@@ -15,7 +15,7 @@ path_pattern: "Plugins/**/*.rb"
 - Plugin MUST NOT hardcode Pokémon IDs (use `:SPECIES` symbols instead)
 - Plugin MUST NOT hardcode move IDs (use `:MOVE` symbols instead)
 - Plugin MUST NOT hardcode item IDs (use `:ITEM` symbols instead)
-- Plugin MUST use `Events.onXYZ` hooks when available (see wiki)
+- Plugin MUST use `EventHandlers.add(:hook_name, :id, proc { ... })` hooks when available (see wiki)
 - Plugin MUST be compatible with save/load (test save scumming)
 
 ## Plugin Header Template
@@ -44,22 +44,20 @@ end
 
 Use Essentials event hooks instead of overriding methods:
 ```ruby
-# Called when a battle starts
-Events.onBattleStart += proc { |sender, e|
+# Called right before a battle begins
+EventHandlers.add(:on_start_battle, :my_plugin_battle_start, proc {
   # Custom logic
-}
+})
 
-# Called when a Pokémon is caught
-Events.onWildPokemonCatch += proc { |sender, e|
-  pokemon = e[0]
-  # Custom logic
-}
+# Called when a wild Pokémon is generated for an encounter
+EventHandlers.add(:on_wild_pokemon_created, :my_plugin_wild_pokemon, proc { |pkmn|
+  # Custom logic — pkmn is the Pokemon object
+})
 
-# Called when player enters a new map
-Events.onMapSceneChange += proc { |sender, e|
-  map_id = $game_map.map_id
-  # Custom logic
-}
+# Called when the player enters a new map
+EventHandlers.add(:on_enter_map, :my_plugin_map_enter, proc { |old_map_id|
+  # Custom logic — old_map_id is 0 if there was no previous map
+})
 ```
 
 ## Reference Documentation
