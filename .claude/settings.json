@@ -5,6 +5,11 @@
     "command": "bash .claude/statusline.sh"
   },
   "permissions": {
+    "additionalDirectories": [
+      "../la-base-de-sky",
+      "../wiki-la-base-de-sky",
+      "../prompts"
+    ],
     "allow": [
       "Bash(git status*)",
       "Bash(git diff*)",
