@@ -38,28 +38,41 @@
 - **Shape**: [shape]
 
 ## PBS Entry
+Field names and order verified against real entries in `PBS/pokemon.txt` (e.g. `[BULBASAUR]`):
 ```
-[[ID]]
+[ID]
 Name = [name]
 Types = [type1],[type2]
 BaseStats = [HP],[ATK],[DEF],[SPD],[SA],[SD]
-EVYield = [HP],[ATK],[DEF],[SPD],[SA],[SD]
-Abilities = [ability1],[ability2]
-GenderRate = [rate]
-GrowthRate = [rate]
-BaseEXP = [exp]
+GenderRatio = [rate, e.g. FemaleOneEighth]
+GrowthRate = [rate, e.g. Parabolic]
+BaseExp = [exp]
+EVs = [stat],[points]
+CatchRate = [value]
 Happiness = [value]
-StepsToHatch = [steps]
+Abilities = [ability1],[ability2]
+HiddenAbilities = [ability]
+Moves = [level1],[MOVE1],[level2],[MOVE2],...
+TutorMoves = [MOVE1],[MOVE2],...
+EggMoves = [MOVE1],[MOVE2],...
+EggGroups = [group1],[group2]
+HatchSteps = [steps]
+Height = [meters]
+Weight = [kg]
 Color = [color]
 Shape = [shape]
 Habitat = [habitat]
-Kind = [classification]
+Category = [classification]
 Pokedex = [description]
-Metrics = [height],[weight],0,0
+Generation = [number]
+Evolution = [SPECIES],[Method],[Param]
 WildItemCommon = [item]
 WildItemUncommon = [item]
 WildItemRare = [item]
 ```
+`WildItemCommon`/`WildItemUncommon`/`WildItemRare` are optional — omit any the species doesn't have.
+Physical measurements beyond Height/Weight (footprint metrics, etc.) live in the separate
+`PBS/pokemon_metrics.txt` file, not in this entry.
 
 ## Implementation Notes
 - Reference: `../wiki-la-base-de-sky/wiki_markdown/02-Pokemon/01-Pokemon/definir-especie.md`

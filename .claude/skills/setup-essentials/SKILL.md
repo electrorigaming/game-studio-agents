@@ -34,24 +34,13 @@ Update:
 ```
 
 ### 3. Update Technical Preferences
-Create/update `.claude/docs/technical-preferences.md`:
-```markdown
-## Engine & Language
-- **Engine**: RPG Maker XP + Pokémon Essentials v21.1/v22
-- **Language**: Ruby (RGSS)
-- **Script Management**: scripts_extract.rb / scripts_combine.rb
-
-## Naming Conventions
-- **PBS Files**: lowercase_snake.txt (pokemon.txt, moves.txt)
-- **Ruby Scripts**: PascalCase.rb (PokeBattle_Battle.rb)
-- **Graphics**: Subcarpetas por tipo (Characters/, Battlers/, Icons/)
-- **Audio**: BGM/, BGS/, ME/, SE/
-
-## Essentials Specialists
-- **Primary**: essentials-specialist
-- **Ruby/RGSS**: ruby-rgss-specialist
-- **PBS Data**: pbs-compiler-specialist
-- **Level Design**: level-designer (adaptado para RPG Maker)
+Update `.claude/docs/technical-preferences.md` (already populated with the verified stack —
+mkxp-z, Ruby 3.1.3, naming conventions, specialist routing). Only update it here if the
+project's actual install differs from what's already recorded (different Ruby/Essentials
+version, custom folder layout, etc.) — verify against the real install before overwriting,
+per the anti-hallucination discipline in the Fase 1 diagnostic (do not assume PascalCase
+script names or a `BGS/` audio folder without checking; this base uses `NNN_Description.rb`
+and has no `BGS/` subfolder).
 
 ## File Extension Routing
 
