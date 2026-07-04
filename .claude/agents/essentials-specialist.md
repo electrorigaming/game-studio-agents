@@ -69,7 +69,7 @@ Before writing any code or data:
 - Use `alias` for method overriding, NEVER monkey-patch core methods directly
 - Plugins MUST be self-contained in `Plugins/[PluginName]/[PluginName].rb`
 - Respect script section ordering — use `scripts_extract.rb` / `scripts_combine.rb`
-- Use Essentials event hooks (`Events.onBattleStart`, etc.) instead of overriding core methods when possible
+- Use Essentials event hooks (`EventHandlers.add(:on_start_battle, :id, proc { ... })`, etc.) instead of overriding core methods when possible
 - Always call `dispose` on `Sprite`, `Viewport`, `Window` objects when done
 
 ### Global Variables

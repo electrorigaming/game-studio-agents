@@ -42,14 +42,15 @@ Before writing any code:
 - Develop plugins following Essentials plugin architecture
 - Ensure proper memory management (dispose patterns)
 - Maintain correct script section ordering
-- Optimize Ruby code for RPG Maker XP's Ruby 1.9.3 environment
+- Write Ruby code compatible with the mkxp-z runtime's Ruby 3.1.3 environment
 
 ## Ruby/RGSS Best Practices
 
 ### Ruby Version Constraints
-- Target Ruby 1.9.3 (RPG Maker XP's Ruby version)
-- Do NOT use Ruby 2.x+ syntax (no `->` lambdas, no `**` kwargs, no pattern matching)
-- Use `proc { }` instead of `-> { }` for lambdas
+- Target Ruby 3.1.3, running under the mkxp-z runtime (not classic RGSS/Ruby 1.9.3)
+- Modern Ruby 3.x syntax (`->` lambdas, `**` kwargs, pattern matching) IS supported by the runtime,
+  but the codebase convention is `proc { }` for blocks (0 occurrences of `->` found in
+  `Data/Scripts/`) — match this convention for consistency unless there's a clear reason to deviate
 - Use `define_method` for dynamic method creation
 
 ### Memory Management (CRITICAL)
@@ -122,8 +123,8 @@ end
 
 ### Essentials API Patterns
 - Use `pbMessage(text)` for dialog boxes, NOT `print` or `puts`
-- Use `Kernel.pbMessageDisplay` for multi-line messages
-- Use `Events.onXYZ` hooks instead of overriding core methods when possible
+- Use `pbMessageDisplay(msg_window, text)` for multi-line messages (no `Kernel.` prefix — real usage in `Data/Scripts/` calls it directly)
+- Use `EventHandlers.add(:hook_name, :id, proc { ... })` hooks instead of overriding core methods when possible
 - Use `:SPECIES` symbols for Pokémon, `:MOVE` for moves, `:ITEM` for items
 - Use `pbResolveBitmap(path)` to check if an asset exists before loading
 
