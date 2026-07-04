@@ -181,5 +181,5 @@ Quick reference for mapping agent domains to La Base de Sky wiki documentation.
 ## Wiki Source
 
 - **Online**: https://la-base-de-sky-wiki-1070f3.gitlab.io/
-- **Local markdown**: `wiki-la-base-de-sky/wiki_markdown/`
-- **Scraper**: `wiki-la-base-de-sky/updater_wiki/descargar_wiki.py`
+- **Local markdown**: `../wiki-la-base-de-sky/wiki_markdown/`
+- **Scraper**: `../wiki-la-base-de-sky/updater_wiki/descargar_wiki.py`

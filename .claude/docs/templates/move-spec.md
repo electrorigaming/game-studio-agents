@@ -36,7 +36,7 @@ Description = [description]
 ```
 
 ## Implementation Notes
-- Reference: `wiki-la-base-de-sky/wiki_markdown/02-Pokemon/02-Movimientos/definir-movimiento.md`
+- Reference: `../wiki-la-base-de-sky/wiki_markdown/02-Pokemon/02-Movimientos/definir-movimiento.md`
 - Check `efectos-movimientos.md` for effect codes
 - Test in battle to verify animation and effect work correctly
 - Ensure type effectiveness is correct

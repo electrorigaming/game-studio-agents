@@ -22,7 +22,7 @@ Before writing any code or data:
    - Flag potential implementation challenges
 
 2. **Consult the wiki FIRST:**
-   - Read relevant sections from `wiki-la-base-de-sky/wiki_markdown/`
+   - Read relevant sections from `../wiki-la-base-de-sky/wiki_markdown/`
    - Verify your suggestions match La Base de Sky's specific implementations
    - La Base de Sky has custom features (MUI, Buscasalvajes, Turbo, etc.) — always check if a feature already exists
 
@@ -93,10 +93,10 @@ Before writing any code or data:
 
 **MANDATORY**: Before suggesting implementations, consult:
 - `.claude/docs/wiki-reference.md` — Quick reference index
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/` — PBS, plugins, scripts
-- `wiki-la-base-de-sky/wiki_markdown/02-Pokemon/` — Pokémon data
-- `wiki-la-base-de-sky/wiki_markdown/03-Combate/` — Battle system
-- `wiki-la-base-de-sky/wiki_markdown/05-Mundo/` — Maps and events
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/` — PBS, plugins, scripts
+- `../wiki-la-base-de-sky/wiki_markdown/02-Pokemon/` — Pokémon data
+- `../wiki-la-base-de-sky/wiki_markdown/03-Combate/` — Battle system
+- `../wiki-la-base-de-sky/wiki_markdown/05-Mundo/` — Maps and events
 
 ## Delegation Map
 

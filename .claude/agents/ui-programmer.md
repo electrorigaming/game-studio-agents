@@ -71,9 +71,9 @@ Before writing any code:
 ### RGSS Version Safety
 
 **RGSS Version Safety**: Before suggesting any RGSS-specific API or class:
-1. Remember RPG Maker XP uses RGSS1 (Ruby 1.9.3 compatible syntax)
-2. Do NOT use Ruby 2.x+ features (no `->` lambdas, no pattern matching)
-3. Consult `wiki-la-base-de-sky/wiki_markdown/04-Interfaz/` for UI patterns
+1. This project runs on mkxp-z with Ruby 3.1.3 (not classic RGSS/Ruby 1.9.3) — modern Ruby 3.x syntax is supported by the runtime
+2. The codebase convention is still `proc { }` over `->` lambdas (0 occurrences of `->` found in `Data/Scripts/`) — match this convention for consistency
+3. Consult `../wiki-la-base-de-sky/wiki_markdown/04-Interfaz/` for UI patterns
 4. Prefer APIs documented in the wiki over training data when they conflict
 
 ### UI Code Principles (RGSS-Specific)
@@ -89,10 +89,10 @@ Before writing any code:
 ### Reference Documentation
 
 **MANDATORY**: Before implementing UI, consult:
-- `wiki-la-base-de-sky/wiki_markdown/04-Interfaz/mui-interfaz.md` — MUI system (CRITICAL)
-- `wiki-la-base-de-sky/wiki_markdown/04-Interfaz/menu-pausa.md` — Pause menu
-- `wiki-la-base-de-sky/wiki_markdown/04-Interfaz/pokedex.md` — Pokédex
-- `wiki-la-base-de-sky/wiki_markdown/04-Interfaz/mochila.md` — Bag system
+- `../wiki-la-base-de-sky/wiki_markdown/04-Interfaz/mui-interfaz.md` — MUI system (CRITICAL)
+- `../wiki-la-base-de-sky/wiki_markdown/04-Interfaz/menu-pausa.md` — Pause menu
+- `../wiki-la-base-de-sky/wiki_markdown/04-Interfaz/pokedex.md` — Pokédex
+- `../wiki-la-base-de-sky/wiki_markdown/04-Interfaz/mochila.md` — Bag system
 
 ### What This Agent Must NOT Do
 

@@ -14,9 +14,9 @@ Configure the project for La Base de Sky (Pokémon Essentials).
 ## Workflow
 
 ### 1. Verify La Base de Sky Installation
-- Check that `la-base-de-sky/LA BASE DE SKY/Game.exe` exists
-- Check that `la-base-de-sky/LA BASE DE SKY/PBS/` exists
-- Check that `la-base-de-sky/LA BASE DE SKY/scripts_extract.rb` exists
+- Check that `../la-base-de-sky/LA BASE DE SKY/Game.exe` exists
+- Check that `../la-base-de-sky/LA BASE DE SKY/PBS/` exists
+- Check that `../la-base-de-sky/LA BASE DE SKY/scripts_extract.rb` exists
 
 ### 2. Update CLAUDE.md Technology Stack
 Ask: "May I update CLAUDE.md with La Base de Sky configuration?"
@@ -30,7 +30,7 @@ Update:
 - **Version Control**: Git
 - **Build System**: RPG Maker XP (Game.exe) + scripts_combine.rb
 - **Asset Pipeline**: RPG Maker XP (Graphics/, Audio/) + PBS files
-- **Reference Documentation**: wiki-la-base-de-sky/wiki_markdown/
+- **Reference Documentation**: ../wiki-la-base-de-sky/wiki_markdown/
 ```
 
 ### 3. Update Technical Preferences
@@ -59,7 +59,7 @@ Create/update `.claude/docs/technical-preferences.md`:
 |-----------------------|---------------------|
 | PBS data files (PBS/*.txt) | pbs-compiler-specialist |
 | Ruby scripts (**/*.rb) | ruby-rgss-specialist |
-| Event data (Data/Events/*.json) | level-designer |
+| Event script calls (proposed for RPG Maker's event editor) | level-designer |
 | Map data (Data/Map*.rxdata) | level-designer |
 | Graphics/Audio assets | essentials-specialist |
 | Plugin code (Plugins/**/*.rb) | ruby-rgss-specialist |
@@ -79,7 +79,7 @@ Engine: RPG Maker XP + Pokémon Essentials v21.1/v22
 Language: Ruby (RGSS)
 PBS Files: [N] files in PBS/
 Scripts: [Extracted/Not extracted]
-Reference: wiki-la-base-de-sky/wiki_markdown/
+Reference: ../wiki-la-base-de-sky/wiki_markdown/
 
 Next Steps:
 1. Run /brainstorm to design your Pokémon game
@@ -88,5 +88,5 @@ Next Steps:
 ```
 
 ## Reference
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/` — Tools and configuration
-- `wiki-la-base-de-sky/wiki_markdown/01-Inicio/01-Inicio/instalacion.md` — Installation guide
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/` — Tools and configuration
+- `../wiki-la-base-de-sky/wiki_markdown/01-Inicio/01-Inicio/instalacion.md` — Installation guide

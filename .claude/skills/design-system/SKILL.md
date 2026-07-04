@@ -15,11 +15,11 @@ This project uses **RPG Maker XP + Pokémon Essentials v21.1/v22 (La Base de Sky
 All system designs must be feasible within these constraints.
 
 **MANDATORY**: Before designing any system, consult the relevant wiki sections:
-- `wiki-la-base-de-sky/wiki_markdown/02-Pokemon/` — Pokémon, moves, abilities, items
-- `wiki-la-base-de-sky/wiki_markdown/03-Combate/` — Battle system and encounters
-- `wiki-la-base-de-sky/wiki_markdown/04-Interfaz/` — UI and MUI
-- `wiki-la-base-de-sky/wiki_markdown/05-Mundo/` — Maps and events
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/` — PBS, plugins, scripts
+- `../wiki-la-base-de-sky/wiki_markdown/02-Pokemon/` — Pokémon, moves, abilities, items
+- `../wiki-la-base-de-sky/wiki_markdown/03-Combate/` — Battle system and encounters
+- `../wiki-la-base-de-sky/wiki_markdown/04-Interfaz/` — UI and MUI
+- `../wiki-la-base-de-sky/wiki_markdown/05-Mundo/` — Maps and events
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/` — PBS, plugins, scripts
 
 Use the wiki to verify that your design aligns with existing Essentials patterns
 and to identify what requires custom scripting vs. what can use built-in features.

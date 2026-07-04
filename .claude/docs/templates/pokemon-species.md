@@ -62,6 +62,6 @@ WildItemRare = [item]
 ```
 
 ## Implementation Notes
-- Reference: `wiki-la-base-de-sky/wiki_markdown/02-Pokemon/01-Pokemon/definir-especie.md`
+- Reference: `../wiki-la-base-de-sky/wiki_markdown/02-Pokemon/01-Pokemon/definir-especie.md`
 - Ensure all cross-references (abilities, evolutions, items) exist in their respective PBS files
 - Test in-game to verify sprites and stats display correctly

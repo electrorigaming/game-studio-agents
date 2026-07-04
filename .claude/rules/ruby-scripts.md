@@ -77,7 +77,7 @@ end
 ## Reference Documentation
 
 **MANDATORY**: Before writing Ruby/RGSS code, consult:
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md` — Useful script snippets
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/plugins.md` — Plugin system
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/secciones-scripts.md` — Script ordering
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/compilador.md` — Compilation process
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md` — Useful script snippets
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/plugins.md` — Plugin system
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/secciones-scripts.md` — Script ordering
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/compilador.md` — Compilation process

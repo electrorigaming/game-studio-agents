@@ -58,7 +58,7 @@ La Base de Sky: [current version] → [latest version if available]
 Pokémon Essentials: [current version] → [latest version if available]
 Wiki: [updated/not updated]
 
-Next: Review changelog at wiki-la-base-de-sky/wiki_markdown/09-Info/changelog.md
+Next: Review changelog at ../wiki-la-base-de-sky/wiki_markdown/09-Info/changelog.md
 ```
 
 ---
@@ -69,7 +69,7 @@ If invoked as `/setup-engine upgrade [old-version] [new-version]`:
 
 ### 4.1 Read Current Version State
 - Read `CLAUDE.md` to confirm current Essentials version
-- Check `wiki-la-base-de-sky/wiki_markdown/09-Info/changelog.md` for migration notes
+- Check `../wiki-la-base-de-sky/wiki_markdown/09-Info/changelog.md` for migration notes
 
 ### 4.2 Fetch Migration Guide
 - Search web for migration guide between versions
@@ -106,5 +106,5 @@ Next steps:
 ---
 
 ## Reference
-- `wiki-la-base-de-sky/wiki_markdown/09-Info/changelog.md` — Version changelog
-- `wiki-la-base-de-sky/wiki_markdown/01-Inicio/` — Installation and setup
+- `../wiki-la-base-de-sky/wiki_markdown/09-Info/changelog.md` — Version changelog
+- `../wiki-la-base-de-sky/wiki_markdown/01-Inicio/` — Installation and setup

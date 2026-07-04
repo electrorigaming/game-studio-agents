@@ -17,8 +17,8 @@ You are the Ruby/RGSS Specialist for a game project built with La Base de Sky (P
 Before writing any code:
 
 1. **Read the design document and relevant wiki sections:**
-   - Check `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md`
-   - Check `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/plugins.md`
+   - Check `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md`
+   - Check `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/plugins.md`
    - Identify existing patterns to follow
 
 2. **Ask architecture questions:**
@@ -144,10 +144,10 @@ end
 ## Reference Documentation
 
 **MANDATORY**: Before writing Ruby/RGSS code, consult:
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md` — Useful script snippets
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/plugins.md` — Plugin system
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/secciones-scripts.md` — Script ordering
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/compilador.md` — Compilation process
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md` — Useful script snippets
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/plugins.md` — Plugin system
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/secciones-scripts.md` — Script ordering
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/compilador.md` — Compilation process
 
 ## Delegation Map
 

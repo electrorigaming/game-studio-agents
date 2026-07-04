@@ -102,10 +102,10 @@ Each map/area document must contain:
 ### Reference Documentation
 
 **MANDATORY**: Before designing maps and events, consult:
-- `wiki-la-base-de-sky/wiki_markdown/05-Mundo/mapas.md` — Map system
-- `wiki-la-base-de-sky/wiki_markdown/05-Mundo/eventos.md` — Event system
-- `wiki-la-base-de-sky/wiki_markdown/05-Mundo/tilesets.md` — Tileset configuration
-- `wiki-la-base-de-sky/wiki_markdown/03-Combate/01-Combate/encuentros-salvajes.md` — Wild encounters
+- `../wiki-la-base-de-sky/wiki_markdown/05-Mundo/mapas.md` — Map system
+- `../wiki-la-base-de-sky/wiki_markdown/05-Mundo/eventos.md` — Event system
+- `../wiki-la-base-de-sky/wiki_markdown/05-Mundo/tilesets.md` — Tileset configuration
+- `../wiki-la-base-de-sky/wiki_markdown/03-Combate/01-Combate/encuentros-salvajes.md` — Wild encounters
 
 ### What This Agent Must NOT Do
 

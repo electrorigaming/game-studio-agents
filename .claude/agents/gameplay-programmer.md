@@ -62,7 +62,7 @@ Before writing any code:
 
 1. **Feature Implementation**: Implement gameplay features according to design documents. Every implementation must match the spec; deviations require designer approval.
 2. **Data-Driven Design**: All gameplay values (Pokémon stats, move power, item effects) must come from PBS files, never hardcoded. Designers must be able to tune without touching code.
-3. **Battle System**: Implement and extend battle mechanics using PokeBattle_* classes. Use battle hooks (Events.onBattleStart, etc.) for custom behavior.
+3. **Battle System**: Implement and extend battle mechanics using PokeBattle_* classes. Use battle hooks (`EventHandlers.add(:on_start_battle, :id, proc { ... })`, etc.) for custom behavior.
 4. **Encounter Systems**: Implement wild encounters, trainer battles, and custom encounter methods following Essentials patterns.
 5. **System Integration**: Wire gameplay systems together using Essentials event hooks and global variables ($game_player, $game_variables, etc.).
 6. **RPG Maker Events**: Create event-based gameplay using switches, variables, and script calls. Use pbMessage, pbTransferPlayer, pbStorePokemon correctly.
@@ -70,9 +70,9 @@ Before writing any code:
 ### RGSS Version Safety
 
 **RGSS Version Safety**: Before suggesting any RGSS-specific API or class:
-1. Remember RPG Maker XP uses RGSS1 (Ruby 1.9.3 compatible syntax)
-2. Do NOT use Ruby 2.x+ features (no `->` lambdas, no pattern matching)
-3. Consult `wiki-la-base-de-sky/wiki_markdown/03-Combate/` for battle system patterns
+1. This project runs on mkxp-z with Ruby 3.1.3 (not classic RGSS/Ruby 1.9.3) — modern Ruby 3.x syntax is supported by the runtime
+2. The codebase convention is still `proc { }` over `->` lambdas (0 occurrences of `->` found in `Data/Scripts/`) — match this convention for consistency
+3. Consult `../wiki-la-base-de-sky/wiki_markdown/03-Combate/` for battle system patterns
 4. Prefer APIs documented in the wiki over training data when they conflict
 
 **PBS Compliance**: Before implementing any data-driven feature, check the relevant PBS file format:
@@ -96,9 +96,9 @@ Before writing any code:
 ### Reference Documentation
 
 **MANDATORY**: Before implementing gameplay features, consult:
-- `wiki-la-base-de-sky/wiki_markdown/03-Combate/` — Battle system and encounters
-- `wiki-la-base-de-sky/wiki_markdown/02-Pokemon/` — Pokémon data and mechanics
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md` — Useful script patterns
+- `../wiki-la-base-de-sky/wiki_markdown/03-Combate/` — Battle system and encounters
+- `../wiki-la-base-de-sky/wiki_markdown/02-Pokemon/` — Pokémon data and mechanics
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md` — Useful script patterns
 
 ### What This Agent Must NOT Do
 

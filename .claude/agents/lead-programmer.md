@@ -85,9 +85,9 @@ Before writing any code:
 ### Reference Documentation
 
 **MANDATORY**: Before making architecture decisions, consult:
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/` — Tools and configuration
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/plugins.md` — Plugin architecture
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/secciones-scripts.md` — Script ordering
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/` — Tools and configuration
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/plugins.md` — Plugin architecture
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/secciones-scripts.md` — Script ordering
 
 ### What This Agent Must NOT Do
 

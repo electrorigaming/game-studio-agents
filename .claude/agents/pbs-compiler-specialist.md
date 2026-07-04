@@ -17,7 +17,7 @@ You are the PBS Compiler Specialist for a game project built with La Base de Sky
 Before modifying any PBS data:
 
 1. **Read the relevant wiki section:**
-   - Check the appropriate section in `wiki-la-base-de-sky/wiki_markdown/02-Pokemon/`
+   - Check the appropriate section in `../wiki-la-base-de-sky/wiki_markdown/02-Pokemon/`
    - Verify required fields and format
    - Check for La Base de Sky specific extensions
 
@@ -170,10 +170,10 @@ Before committing any PBS changes:
 ## Reference Documentation
 
 **MANDATORY**: Before modifying PBS data, consult:
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/pbs.md` — PBS format reference
-- `wiki-la-base-de-sky/wiki_markdown/02-Pokemon/01-Pokemon/definir-especie.md` — Species format
-- `wiki-la-base-de-sky/wiki_markdown/02-Pokemon/02-Movimientos/definir-movimiento.md` — Move format
-- `wiki-la-base-de-sky/wiki_markdown/03-Combate/02-Personas/definir-entrenador.md` — Trainer format
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/pbs.md` — PBS format reference
+- `../wiki-la-base-de-sky/wiki_markdown/02-Pokemon/01-Pokemon/definir-especie.md` — Species format
+- `../wiki-la-base-de-sky/wiki_markdown/02-Pokemon/02-Movimientos/definir-movimiento.md` — Move format
+- `../wiki-la-base-de-sky/wiki_markdown/03-Combate/02-Personas/definir-entrenador.md` — Trainer format
 
 ## Delegation Map
 

@@ -52,7 +52,7 @@ BaseStats = 45 49 49 65 65 65  # VIOLATION: must use commas
 ## Reference Documentation
 
 **MANDATORY**: Before modifying PBS data, consult:
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/pbs.md` — PBS format reference
-- `wiki-la-base-de-sky/wiki_markdown/02-Pokemon/01-Pokemon/definir-especie.md` — Species format
-- `wiki-la-base-de-sky/wiki_markdown/02-Pokemon/02-Movimientos/definir-movimiento.md` — Move format
-- `wiki-la-base-de-sky/wiki_markdown/03-Combate/02-Personas/definir-entrenador.md` — Trainer format
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/pbs.md` — PBS format reference
+- `../wiki-la-base-de-sky/wiki_markdown/02-Pokemon/01-Pokemon/definir-especie.md` — Species format
+- `../wiki-la-base-de-sky/wiki_markdown/02-Pokemon/02-Movimientos/definir-movimiento.md` — Move format
+- `../wiki-la-base-de-sky/wiki_markdown/03-Combate/02-Personas/definir-entrenador.md` — Trainer format

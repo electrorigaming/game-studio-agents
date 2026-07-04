@@ -44,7 +44,7 @@ When this skill is invoked:
 
    **La Base de Sky Context**: This project uses RPG Maker XP + Pokémon Essentials v21.1/v22.
    All concepts must be feasible within these constraints. Consult
-   `wiki-la-base-de-sky/wiki_markdown/` for implementation patterns.
+   `../wiki-la-base-de-sky/wiki_markdown/` for implementation patterns.
 
 ---
 
@@ -255,7 +255,7 @@ Ground the concept in reality:
 - **Pokémon Essentials Feasibility**: Use `AskUserQuestion` — "Which Essentials features are critical for your concept?"
   Options: `Custom Pokémon/Forms` / `Custom Battle Mechanics` / `Custom UI/Menus` / `Custom Overworld Mechanics` / `Standard Essentials features`
   - Record the answer — it shapes the technical scope
-  - Consult `wiki-la-base-de-sky/wiki_markdown/` to verify feature feasibility
+  - Consult `../wiki-la-base-de-sky/wiki_markdown/` to verify feature feasibility
   - Flag any features that require extensive custom scripting
 
 - **Art pipeline**: What's the art style? Consider RPG Maker XP constraints:

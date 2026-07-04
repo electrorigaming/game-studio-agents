@@ -14,13 +14,13 @@ Extract Scripts.rxdata into individual .rb files for editing.
 ## Workflow
 
 ### 1. Verify Environment
-- Check that `la-base-de-sky/LA BASE DE SKY/scripts_extract.rb` exists
-- Check that `la-base-de-sky/LA BASE DE SKY/Data/Scripts.rxdata` exists
+- Check that `../la-base-de-sky/LA BASE DE SKY/scripts_extract.rb` exists
+- Check that `../la-base-de-sky/LA BASE DE SKY/Data/Scripts.rxdata` exists
 
 ### 2. Extract Scripts
 Run the extraction script:
 ```bash
-cd "la-base-de-sky/LA BASE DE SKY"
+cd "../la-base-de-sky/LA BASE DE SKY"
 ruby scripts_extract.rb
 ```
 
@@ -44,4 +44,4 @@ Next: Edit individual .rb files, then run /combine-scripts
 - Script ordering is preserved in filenames (e.g., 001_ScriptName.rb)
 
 ## Reference
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md`
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md`

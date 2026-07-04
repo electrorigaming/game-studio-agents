@@ -63,5 +63,5 @@ EventHandlers.add(:on_enter_map, :my_plugin_map_enter, proc { |old_map_id|
 ## Reference Documentation
 
 **MANDATORY**: Before implementing plugins, consult:
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/plugins.md` — Plugin system
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md` — Useful script snippets
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/plugins.md` — Plugin system
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md` — Useful script snippets

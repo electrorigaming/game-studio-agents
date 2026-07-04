@@ -1,6 +1,6 @@
 ---
 trigger: path_pattern
-path_pattern: "Data/Events/*.json"
+path_pattern: "**/*.rb"
 ---
 
 # RPG Maker Events Rules
@@ -65,6 +65,6 @@ print("Hello!")
 ## Reference Documentation
 
 **MANDATORY**: Before creating events, consult:
-- `wiki-la-base-de-sky/wiki_markdown/05-Mundo/eventos.md` — Event system
-- `wiki-la-base-de-sky/wiki_markdown/05-Mundo/mapas.md` — Map system
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md` — Useful script snippets
+- `../wiki-la-base-de-sky/wiki_markdown/05-Mundo/eventos.md` — Event system
+- `../wiki-la-base-de-sky/wiki_markdown/05-Mundo/mapas.md` — Map system
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/scripts-utiles.md` — Useful script snippets

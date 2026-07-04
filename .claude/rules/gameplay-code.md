@@ -9,7 +9,7 @@ path_pattern: "Plugins/**/Battle_*.rb"
 
 - ALL gameplay values MUST come from PBS files, NEVER hardcoded
 - Use `:SPECIES`, `:MOVE`, `:ITEM` symbols, never numeric IDs
-- Use Essentials event hooks (`Events.onBattleStart`, etc.) for cross-system communication
+- Use Essentials event hooks (`EventHandlers.add(:on_start_battle, :id, proc { ... })`, etc.) for cross-system communication
 - Every gameplay system must implement a clear interface
 - State machines must have explicit transition tables with documented states
 - Document which design doc each feature implements in code comments
@@ -50,6 +50,6 @@ end
 ## Reference Documentation
 
 **MANDATORY**: Before implementing gameplay code, consult:
-- `wiki-la-base-de-sky/wiki_markdown/03-Combate/` — Battle system
-- `wiki-la-base-de-sky/wiki_markdown/02-Pokemon/` — Pokémon data
-- `wiki-la-base-de-sky/wiki_markdown/08-Herramientas/pbs.md` — PBS format
+- `../wiki-la-base-de-sky/wiki_markdown/03-Combate/` — Battle system
+- `../wiki-la-base-de-sky/wiki_markdown/02-Pokemon/` — Pokémon data
+- `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/pbs.md` — PBS format

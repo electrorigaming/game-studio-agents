@@ -26,7 +26,7 @@ path_pattern: "Plugins/**/UI_*.rb"
 ## Reference Documentation
 
 **MANDATORY**: Before implementing UI, consult:
-- `wiki-la-base-de-sky/wiki_markdown/04-Interfaz/mui-interfaz.md` — MUI system (CRITICAL)
-- `wiki-la-base-de-sky/wiki_markdown/04-Interfaz/menu-pausa.md` — Pause menu
-- `wiki-la-base-de-sky/wiki_markdown/04-Interfaz/pokedex.md` — Pokédex
-- `wiki-la-base-de-sky/wiki_markdown/04-Interfaz/mochila.md` — Bag system
+- `../wiki-la-base-de-sky/wiki_markdown/04-Interfaz/mui-interfaz.md` — MUI system (CRITICAL)
+- `../wiki-la-base-de-sky/wiki_markdown/04-Interfaz/menu-pausa.md` — Pause menu
+- `../wiki-la-base-de-sky/wiki_markdown/04-Interfaz/pokedex.md` — Pokédex
+- `../wiki-la-base-de-sky/wiki_markdown/04-Interfaz/mochila.md` — Bag system
