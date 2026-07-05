@@ -5,21 +5,27 @@
 
 ## Version Control Strategy (la-base-de-sky game repo)
 
-- **`main`** tracks `upstream/main` (the official La Base de Sky community repo) exclusively —
-  it is updated ONLY by merging in upstream releases (via `/setup-engine upgrade` or
-  `/setup-engine refresh`). Never commit any game design/content work to `main`, and never merge
-  a game branch into it.
-- **One permanent branch per game project**: all design/implementation for a given game lives on
-  its own long-lived branch, `game/[nombre-del-juego]` (e.g. `game/mi-juego`). Every epic and
-  story for that game (`/create-epics`, `/dev-story`, etc.) commits directly to this same branch
-  — epics do NOT get their own sub-branch, and this branch is never merged anywhere. It IS the
-  project, indefinitely.
-- **Starting a second, independent game** in the same repo: create another branch from `main`,
-  e.g. `game/mi-juego2`. Game branches never merge into each other or into `main`.
-- **Picking up engine updates**: when `main` advances (new upstream release merged in), merge
-  `main` INTO the game branch to bring in the update — never the other way around.
-- `origin` is the user's own GitLab fork (`electrorigaming/la-base-de-sky`); `upstream` is the
-  community repo (`la-base-de-sky/La-Base-de-Sky`). Push the game branch to `origin`.
+Three layers, each with a different lifetime:
+
+1. **`main`** tracks `upstream/main` (the official La Base de Sky community repo) exclusively —
+   updated ONLY by merging in upstream releases (via `/setup-engine upgrade` or
+   `/setup-engine refresh`). Never commit game design/content work to `main`, and never merge a
+   `game/*` or `epic/*` branch into it.
+2. **`game/[nombre-del-juego]`** — one permanent branch per game project (e.g. `game/mi-juego`),
+   created once from `main`. This is the project's actual trunk, indefinitely. It is **never
+   merged anywhere** (not into `main`, not into another game's branch).
+   - **Starting a second, independent game**: another branch from `main`, e.g. `game/mi-juego2`.
+     Game branches never merge into each other.
+   - **Picking up engine updates**: when `main` advances, merge `main` INTO the game branch —
+     never the other way around.
+3. **`epic/[epic-slug]`** — one branch per epic, branched FROM the game branch (not from `main`).
+   All of that epic's stories (`/dev-story`) commit here. When every story passes `/story-done`
+   and the epic has been playtested in `Game.exe`, merge `epic/[epic-slug]` back into
+   `game/[nombre-del-juego]` — this is what keeps epic history visually separated in the graph.
+   Branch new epics off the game branch, not off another in-progress epic branch.
+
+`origin` is the user's own GitLab fork (`electrorigaming/la-base-de-sky`); `upstream` is the
+community repo (`la-base-de-sky/La-Base-de-Sky`). Push the game and epic branches to `origin`.
 
 ## Engine & Language
 

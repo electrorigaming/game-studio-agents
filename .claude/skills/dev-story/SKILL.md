@@ -40,13 +40,20 @@ If not found, ask: "Which story are we implementing?" Glob
 ### Branch Check (La Base de Sky game repo)
 Before touching any code, check the current branch in `../la-base-de-sky`:
 - Run `git -C ../la-base-de-sky branch --show-current`.
-- If it's `main` (or anything not matching `game/*`): STOP and ask — "No estamos en una rama de
-  juego. ¿En qué proyecto estamos trabajando? Dame el nombre (ej. `game/mi-juego`) y la creo desde
-  `main` si no existe (`git -C ../la-base-de-sky checkout main && git -C ../la-base-de-sky checkout -b game/[nombre]`)."
-  Never implement directly on `main`.
-- If already on a `game/*` branch, just confirm it's the right one for this story and continue —
-  this branch is permanent, do not create a new branch per epic or per story.
-- This branch is never merged into `main` or into any other `game/*` branch. See
+- If it's `main`: STOP — never implement directly on `main`. Ask which game/epic this is and
+  route to the steps below.
+- If it's the game's permanent branch (`game/[nombre-del-juego]`) rather than an epic branch:
+  ask before implementing — stories should land on `epic/[epic-slug]`, not directly on the game
+  branch.
+- Determine the story's epic-slug (from its path, `production/epics/[epic-slug]/...`). Check for
+  `epic/[epic-slug]`:
+  - If it exists and you're not on it, switch to it.
+  - If it doesn't exist, create it **from the game's permanent branch** (never from `main`):
+    `git -C ../la-base-de-sky checkout game/[nombre-del-juego] && git -C ../la-base-de-sky checkout -b epic/[epic-slug]`.
+    If there's no `game/*` branch yet either, ask the user for the game's name first and create
+    that from `main`, then branch the epic off it.
+- `epic/[epic-slug]` merges into `game/[nombre-del-juego]` when the epic is done (see
+  `/create-epics` Definition of Done) — never into `main`. See
   `.claude/docs/technical-preferences.md` § Version Control Strategy.
 
 ---

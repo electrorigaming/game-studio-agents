@@ -197,7 +197,9 @@ This epic is complete when:
 - All acceptance criteria from `design/gdd/[filename].md` are verified
 - All Logic and Integration stories have passing test files in `tests/`
 - All Visual/Feel and UI stories have evidence docs with sign-off in `production/qa/evidence/`
-- (La Base de Sky) The epic has been manually playtested in `Game.exe`
+- (La Base de Sky) The epic has been manually playtested in `Game.exe`, then `epic/[epic-slug]`
+  is merged into the game's permanent branch (`game/[nombre-del-juego]`) — see
+  `.claude/docs/technical-preferences.md` § Version Control Strategy
 
 ## Next Step
 
@@ -205,10 +207,10 @@ Run `/create-stories [epic-slug]` to break this epic into implementable stories.
 
 ## Branch
 
-For La Base de Sky (game repo, not this framework): this epic is implemented directly on the
-game's permanent branch (`game/[nombre-del-juego]`) — epics do NOT get their own branch, and
-nothing from this epic is ever merged elsewhere. See `.claude/docs/technical-preferences.md`
-§ Version Control Strategy.
+For La Base de Sky (game repo, not this framework): this epic gets its own branch,
+`epic/[epic-slug]`, branched from the game's permanent branch (`game/[nombre-del-juego]`, never
+from `main`). `/dev-story` checks for and offers to create it before implementing the epic's
+first story. See `.claude/docs/technical-preferences.md` § Version Control Strategy.
 ```
 
 ### Update `production/epics/index.md`
