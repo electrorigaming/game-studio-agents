@@ -9,8 +9,9 @@ diseñado** — no existe `design/gdd/game-concept.md`, no hay GDDs, no hay spri
 punto de partida: el siguiente comando útil es `/brainstorm`.
 
 Esta guía explica: (1) los conceptos básicos de cómo funciona el framework, (2) el protocolo de
-colaboración, (3) el catálogo completo de agentes, (4) el catálogo completo de skills, y (5) el
-paso a paso recomendado para diseñar y construir tu juego con La Base de Sky.
+colaboración, (3) el catálogo completo de agentes, (4) el catálogo completo de skills, (5) el
+paso a paso recomendado para diseñar y construir tu juego con La Base de Sky, y (6) qué se hace
+por código/PBS vs. qué se hace en el editor gráfico de RPG Maker XP.
 
 ---
 
@@ -119,7 +120,7 @@ Esto ya se verificó funcionando en la Fase 7 (ver `production/verificacion-fase
 
 ---
 
-## 4. Catálogo de skills (80 disponibles)
+## 4. Catálogo de skills (81 disponibles)
 
 ### Arranque y diagnóstico
 | Skill | Qué hace |
@@ -182,6 +183,7 @@ Esto ya se verificó funcionando en la Fase 7 (ver `production/verificacion-fase
 | `/validate-pbs [archivo\|all]` | Valida sintaxis PBS y referencias cruzadas con el script determinista `scripts/validate_pbs.rb` — **ejecútalo después de cualquier cambio a PBS** |
 | `/story-done` | Revisión de fin de historia — verifica criterios de aceptación |
 | `/code-review` | Revisión arquitectónica y de calidad para RGSS/PBS |
+| `/editor-guide [tarea]` | Instrucciones paso a paso para tareas que se hacen en el **editor gráfico de RPG Maker XP** (Base de Datos, editor de mapas) — ver sección 7 |
 
 ### QA y testing
 | Skill | Qué hace |
@@ -286,7 +288,31 @@ paso 0.
 
 ---
 
-## 6. Notas prácticas
+## 6. Qué se hace por código/PBS vs. qué se hace en el editor RPG Maker XP
+
+Diseñar el juego no es solo documentos y archivos de texto: varias partes se configuran
+**dentro del editor gráfico de RPG Maker XP** (una aplicación Windows con licencia propia,
+distinta de `Game.exe`/mkxp-z que solo ejecuta el juego ya compilado). Ningún agente puede
+manipular esa interfaz directamente — cuando una tarea la requiere, te da instrucciones paso
+a paso para que la hagas tú en el editor.
+
+| Tarea | Dónde en el editor |
+|-------|---------------------|
+| Animaciones de ataque (partículas, destellos, SE por movimiento) | `F9` (Base de Datos) → pestaña **Animations** |
+| Tilesets (passages, prioridades, terrain tags, autotiles) | `F9` (Base de Datos) → pestaña **Tilesets** |
+| Pintar mapas (tiles, capas, colocar eventos) | Doble clic en un mapa del árbol de la izquierda |
+| Colocar/configurar un evento en un mapa | Doble clic en el mapa → doble clic en la casilla |
+| Música de la pantalla de título y ajustes generales | `F9` (Base de Datos) → pestaña **System** |
+| Imagen de la pantalla de título, o cualquier gráfico nuevo | Copiar el archivo directamente en la subcarpeta de `Graphics/` correspondiente — este proyecto usa carpetas sueltas, no un Resource Manager empaquetado |
+
+**No se usan** las pestañas clásicas `Actors`, `Classes`, `Skills`, `Troops`, `Items`, `Weapons`,
+`Armors` — Pokémon Essentials reemplaza todo ese contenido con datos PBS.
+
+Usa **`/editor-guide [tarea]`** para pedir instrucciones paso a paso de cualquiera de estas
+tareas bajo demanda — nunca escribe archivos, solo te guía. Tabla completa y el patrón de
+instrucciones en `.claude/docs/rpgmaker-editor-guide.md`.
+
+## 7. Notas prácticas
 
 - **Rutas a los repos hermanos**: siempre `../la-base-de-sky/...` y `../wiki-la-base-de-sky/...`
   (con `../`) porque Claude Code corre desde `game-studio-agents/`.
@@ -311,4 +337,5 @@ paso 0.
 - `production/verificacion-fase7.md` — batería completa de pruebas del framework
 - `.claude/docs/wiki-reference.md` — índice de la wiki por dominio
 - `.claude/docs/technical-preferences.md` — stack técnico y convenciones completas
+- `.claude/docs/rpgmaker-editor-guide.md` — tareas del editor RPG Maker XP (Base de Datos, mapas)
 - `design/PLAN-IMPLEMENTACION-CC.md` — el plan de adaptación completo (histórico)

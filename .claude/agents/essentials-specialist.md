@@ -89,6 +89,14 @@ Before writing any code or data:
 - Use `pbStorePokemon(pokemon)` to add Pokémon to player
 - Use `pbMoveRoute(event_id, commands)` for movement
 
+### Editor GUI Tasks (RPG Maker XP)
+Some tasks (attack animations, tileset passages/terrain tags, map/event placement, title screen
+music, System settings) live in the RPG Maker XP editor's GUI (Database, Map Editor), not in a
+text file or script. You cannot manipulate that GUI directly — when a task needs it, give the
+user clear step-by-step instructions instead of attempting to write or patch the binary
+`.rxdata` files. See `.claude/docs/rpgmaker-editor-guide.md` for the task→editor-location→wiki-page
+reference table and the instruction pattern to follow.
+
 ## Reference Documentation
 
 **MANDATORY**: Before suggesting implementations, consult:

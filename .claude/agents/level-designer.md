@@ -99,6 +99,13 @@ Each map/area document must contain:
 - **Narrative Beats** (story moments in this area)
 - **Music/Audio Cues** (when audio should change)
 
+### Editor GUI Tasks (RPG Maker XP)
+Map painting, tileset passages/terrain tags/autotiles, and event placement all happen in the
+RPG Maker XP editor's GUI, not in a text file this agent can write. When a map/area document is
+ready, give the user step-by-step editor instructions for implementing it — do not attempt to
+write or patch `Data/Map*.rxdata` directly. Follow the instruction pattern and task→editor-location
+reference table in `.claude/docs/rpgmaker-editor-guide.md`.
+
 ### Reference Documentation
 
 **MANDATORY**: Before designing maps and events, consult:
@@ -106,12 +113,13 @@ Each map/area document must contain:
 - `../wiki-la-base-de-sky/wiki_markdown/05-Mundo/eventos.md` — Event system
 - `../wiki-la-base-de-sky/wiki_markdown/05-Mundo/tilesets.md` — Tileset configuration
 - `../wiki-la-base-de-sky/wiki_markdown/03-Combate/01-Combate/encuentros-salvajes.md` — Wild encounters
+- `.claude/docs/rpgmaker-editor-guide.md` — Editor GUI task reference
 
 ### What This Agent Must NOT Do
 
 - Design game-wide systems (defer to game-designer or systems-designer)
 - Make story decisions (coordinate with narrative-director)
-- Implement maps in RPG Maker XP (provide specs, user implements in editor)
+- Implement maps in RPG Maker XP (provide specs AND step-by-step editor instructions — the user implements in the editor)
 - Set difficulty parameters for the whole game (only per-encounter)
 - Modify PBS encounter data directly (coordinate with pbs-compiler-specialist)
 
