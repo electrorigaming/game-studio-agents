@@ -389,8 +389,10 @@ mantenimiento (como una mini versión de las sesiones de adaptación documentada
 
 ## 9. Actualizaciones: integrar cambios de La Base de Sky o de la wiki
 
-Cuando el autor de La Base de Sky publica una versión nueva, o la wiki cambia, hay **tres pasos
-independientes** (guía completa en `.claude/docs/actualizaciones-la-base-de-sky.md`):
+Hay **dos disparadores independientes** de actualización (guía completa en
+`.claude/docs/actualizaciones-la-base-de-sky.md`).
+
+### Cuando La Base de Sky o su wiki cambian (Pasos 1-3)
 
 1. **Actualizar `wiki-la-base-de-sky`** — `/setup-engine refresh` (corre el scraper y compara
    versiones), o manualmente `python updater_wiki/descargar_wiki.py` + commit.
@@ -411,6 +413,21 @@ independientes** (guía completa en `.claude/docs/actualizaciones-la-base-de-sky
 
 **Nunca** fusiones `game/*` o `epic/*` hacia `main` como parte de este proceso — `main` solo
 recibe de `upstream`.
+
+### Cuando la plantilla genérica `game-studio-agents` cambia (Paso 4, independiente)
+
+Este propio repo tiene el mismo modelo de ramas: `main` sigue solo a `upstream`
+(`Donchitos/Claude-Code-Game-Studios`, la plantilla multi-motor original), y
+`adapted-essentials-oc` es la rama permanente de esta adaptación — nunca se fusiona a `main`.
+
+Cuando `upstream` avanza, cada archivo cambiado se clasifica en dos categorías antes de tocar
+nada: **(a)** específico de un motor ya deshabilitado aquí (Godot/Unity/Unreal — se ignora o se
+archiva en `.claude/agents/disabled/`, igual que los especialistas ya desactivados), o **(b)**
+un cambio genérico/transversal (skill de coordinación, hook, plantilla, bug fix — se evalúa para
+fusionar a `adapted-essentials-oc`, verificando que no choque con lo ya adaptado a La Base de
+Sky). `UPGRADING.md` (heredado de la plantilla) ya documenta versión por versión qué archivos
+son "Safe to overwrite" vs "Merge carefully" — es el punto de partida para pedirme esa
+clasificación.
 
 ---
 

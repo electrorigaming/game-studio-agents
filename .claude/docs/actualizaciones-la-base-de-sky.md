@@ -1,13 +1,16 @@
 # Actualizar La Base de Sky, los juegos ya creados, y el framework
 
-Guía paso a paso para cuando sale una actualización de **La Base de Sky** (el motor/base) o de
-su **wiki**, y hay que decidir qué hacer con: (1) el repo `wiki-la-base-de-sky`, (2) el repo
-`la-base-de-sky` — tanto la rama `main` como cada `game/[nombre-del-juego]` ya en marcha —, y
-(3) las reglas/agentes/docs de este framework (`game-studio-agents`) que asumen hechos sobre la
-versión anterior.
+Guía paso a paso para dos disparadores distintos de actualización:
 
-Son **tres pasos independientes, en este orden**. No hace falta hacer los tres siempre: si solo
-cambió la wiki (sin nueva versión del motor), el Paso 2 no aplica.
+- **La Base de Sky o su wiki cambian** (Pasos 1-3): qué hacer con `wiki-la-base-de-sky`, con
+  `la-base-de-sky` (rama `main` y cada `game/[nombre-del-juego]`), y con las reglas/agentes/docs
+  de este framework que asumen hechos sobre la versión anterior.
+- **La plantilla genérica de la que nace `game-studio-agents` cambia** (Paso 4): un disparador
+  independiente — no depende de La Base de Sky en absoluto, depende de cuándo el proyecto
+  `Donchitos/Claude-Code-Game-Studios` publique una actualización.
+
+No hace falta hacer todos los pasos siempre: si solo cambió la wiki (sin nueva versión del
+motor), el Paso 2 no aplica. El Paso 4 es completamente independiente de los Pasos 1-3.
 
 ---
 
@@ -146,8 +149,81 @@ verificó. No es obligatorio para un cambio menor de wiki.
 
 ---
 
+## Paso 4 — Actualizar el propio framework `game-studio-agents` (su plantilla genérica)
+
+Este repo (`game-studio-agents`) tiene el **mismo modelo de ramas** que `la-base-de-sky`, pero
+con otro significado:
+
+| | `la-base-de-sky` | `game-studio-agents` (este repo) |
+|---|---|---|
+| `origin` | tu fork (`electrorigaming/la-base-de-sky`) | tu fork (`electrorigaming/game-studio-agents`) |
+| `upstream` | comunidad La Base de Sky | `Donchitos/Claude-Code-Game-Studios` — la plantilla genérica multi-motor original |
+| `main` | solo recibe de `upstream` | solo recibe de `upstream` |
+| rama permanente | `game/[nombre-del-juego]` | `adapted-essentials-oc` — esta adaptación a La Base de Sky, nunca se fusiona a `main` |
+
+`upstream/Claude-Code-Game-Studios` no sabe nada de Pokémon ni de La Base de Sky: sigue
+evolucionando como framework genérico para **cualquier motor** (Godot, Unity, Unreal,
+Essentials...). Cuando avanza, cada cambio nuevo cae en una de dos categorías, y hay que
+clasificarlo antes de tocar nada:
+
+**(a) Específico de un motor ya deshabilitado aquí** (Godot/Unity/Unreal) — esta adaptación ya
+movió esos agentes a `.claude/agents/disabled/` (ver `godot-*`, `unity-*`, `unreal-*` ahí). Si
+`upstream` agrega o cambia algo específico de esos motores, **se ignora o se archiva en
+`disabled/`** igual que lo existente — nunca se activa ni se mezcla con los especialistas
+Essentials.
+
+**(b) Cambio genérico/transversal** (aplica a cualquier motor) — nuevos skills de coordinación,
+bug fixes, mejoras de protocolo (`AskUserQuestion`, director gates...), nuevas plantillas, nuevos
+hooks. Esto **sí** debe evaluarse para adaptarlo a `adapted-essentials-oc`, verificando que no
+choque con lo ya adaptado a La Base de Sky (`.claude/docs/technical-preferences.md`, los tres
+especialistas Essentials, `.claude/rules/*.md`, `.claude/docs/wiki-reference.md`).
+
+### 4.1 — Trae la actualización a `main`
+
+```bash
+git fetch upstream
+git checkout main
+git merge upstream/main
+git push origin main
+```
+
+### 4.2 — Pide la clasificación antes de fusionar nada a `adapted-essentials-oc`
+
+`UPGRADING.md` (heredado de la plantilla) ya documenta, versión por versión, qué archivos son
+"Safe to overwrite" vs "Merge carefully" — es el punto de partida, no hay que inventar la
+clasificación desde cero.
+
+```
+Compara main con upstream/main (git log main..upstream/main, git diff main..upstream/main --stat).
+Para cada archivo nuevo o cambiado, dime:
+(a) si es específico de Godot/Unity/Unreal (o cualquier motor que no sea Essentials) — en ese
+    caso va a .claude/agents/disabled/ o se ignora, nunca se activa;
+(b) si es un cambio genérico/transversal (skill de coordinación, hook, plantilla, bug fix) — en
+    ese caso evalúalo para fusionar a adapted-essentials-oc, revisando que no choque con
+    .claude/docs/technical-preferences.md, essentials-specialist.md, ruby-rgss-specialist.md,
+    pbs-compiler-specialist.md, .claude/rules/*.md, .claude/docs/wiki-reference.md.
+Usa UPGRADING.md como referencia de qué cambió versión por versión.
+```
+
+### 4.3 — Fusiona solo lo clasificado como (b)
+
+```bash
+git checkout adapted-essentials-oc
+git merge main   # o cherry-pick de los commits/archivos específicos de la categoría (b)
+```
+
+Resuelve conflictos con el mismo criterio que en `la-base-de-sky`: tu contenido específico de
+Essentials se mantiene, las mejoras estructurales genéricas se aceptan. Aprueba archivo por
+archivo antes de escribir, igual que en el Paso 3.
+
+`adapted-essentials-oc` **nunca se fusiona de vuelta a `main`** — mismo principio que
+`game/[nombre-del-juego]` en `la-base-de-sky`.
+
+---
+
 ## Checklist resumen
 
+**Si cambió La Base de Sky o su wiki (Pasos 1-3):**
 1. [ ] `/setup-engine refresh` (o Paso 1 manual) — wiki actualizada, versión detectada
 2. [ ] Si hay nueva versión: `main ← upstream/main`, luego `/setup-engine upgrade` si aplica
 3. [ ] Cada `game/[nombre-del-juego]` ← `main` (conflictos resueltos, `/validate-pbs all`, playtest)
@@ -155,16 +231,27 @@ verificó. No es obligatorio para un cambio menor de wiki.
 5. [ ] Re-verificación archivo por archivo contra wiki nueva + código real
 6. [ ] Aprobación y (si se pide) commit
 
+**Si cambió la plantilla genérica `game-studio-agents` (Paso 4, independiente):**
+1. [ ] `main ← upstream/main` (upstream = `Donchitos/Claude-Code-Game-Studios`)
+2. [ ] Clasificación por archivo: (a) específico de Godot/Unity/Unreal → ignorar/`disabled/`,
+       (b) genérico/transversal → candidato a fusionar
+3. [ ] Fusionar solo (b) a `adapted-essentials-oc`, resolviendo conflictos contra lo ya adaptado
+4. [ ] Aprobación y (si se pide) commit
+
 ## Qué NO hacer
 
 - No fusiones `game/[nombre-del-juego]` ni `epic/*` hacia `main` — nunca, bajo ninguna excusa de
   "sincronizar".
+- No fusiones `adapted-essentials-oc` (la rama de esta adaptación) hacia `main` de
+  `game-studio-agents` — mismo principio, en el otro repo.
 - No aceptes una regla/dato nuevo del framework solo porque la wiki lo dice — si toca sintaxis o
   una API, verifícalo también contra el código real (mismo principio que el caso
   `Evolution`/`Evolutions` en `.claude/rules/pbs-files.md`).
 - No actualices epics en curso sin avisar — pregunta primero si hay `epic/*` sin fusionar.
 - No re-adaptes todo el framework de cero (no repitas las Fases 1-7 completas) — el Paso 3 es
   deliberadamente dirigido solo a lo que cambió.
+- No actives agentes/skills específicos de Godot/Unity/Unreal que lleguen de `upstream` —
+  archívalos en `.claude/agents/disabled/` igual que los ya existentes.
 
 ---
 
@@ -173,6 +260,9 @@ verificó. No es obligatorio para un cambio menor de wiki.
 - `.claude/docs/technical-preferences.md` § Version Control Strategy — modelo de 3 capas de ramas
 - `.claude/skills/setup-engine/SKILL.md` — `/setup-engine refresh` y `/setup-engine upgrade`
 - `.claude/docs/wiki-reference.md` — índice agente ↔ página de wiki
+- `UPGRADING.md` — historial versión por versión de la plantilla genérica (Safe to overwrite /
+  Merge carefully), heredado de `Donchitos/Claude-Code-Game-Studios`
+- `.claude/agents/disabled/` — especialistas de Godot/Unity/Unreal desactivados en esta adaptación
 - `design/PLAN-IMPLEMENTACION-CC.md` — el plan de adaptación original (referencia del nivel de
   rigor esperado al re-verificar)
 - `production/verificacion-fase7.md` — ejemplo de reporte de verificación
