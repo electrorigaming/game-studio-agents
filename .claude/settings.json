@@ -33,7 +33,10 @@
       "Bash(*>.env*)",
       "Bash(cat *.env*)",
       "Bash(type *.env*)",
-      "Read(**/.env*)"
+      "Read(**/.env*)",
+      "Bash(ssh *)",
+      "Bash(*>/dev/*)",
+      "Bash(*> /dev/*)"
     ]
   },
   "hooks": {
