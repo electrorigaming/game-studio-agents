@@ -3,6 +3,21 @@
 <!-- Populated by /setup-engine. Updated as the user makes decisions throughout development. -->
 <!-- All agents reference this file for project-specific standards and conventions. -->
 
+## Version Control Strategy (la-base-de-sky game repo)
+
+- **`main`** tracks `upstream/main` (the official La Base de Sky community repo) — stays clean,
+  only updated by merging in upstream releases via `/setup-engine upgrade` or `/setup-engine refresh`.
+  Never commit game design/content work directly to `main`.
+- **One branch per epic**: each epic from `/create-epics` gets its own branch,
+  `feature/[epic-slug]` (matching `production/epics/[epic-slug]/` exactly). All of that epic's
+  stories (`/dev-story`) are implemented and committed on this branch.
+- **Merge criteria**: merge an epic branch back into `main` once all its stories pass
+  `/story-done` and the epic has been manually playtested in `Game.exe`.
+- **Branch off `main`, not off another in-progress epic branch** — epics are meant to be
+  independently mergeable; branching off another epic's WIP branch creates merge-order coupling.
+- `origin` is the user's own GitLab fork (`electrorigaming/la-base-de-sky`); `upstream` is the
+  community repo (`la-base-de-sky/La-Base-de-Sky`). Push epic branches to `origin`.
+
 ## Engine & Language
 
 - **Engine**: RPG Maker XP + Pokémon Essentials v21.1/v22, running on the mkxp-z runtime
