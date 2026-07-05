@@ -133,10 +133,16 @@ Description = A physical attack in which the user charges and slams into the tar
 are optional and go between `Target`/`FunctionCode` and `Flags` when present.
 
 **Trainer Entry** (`trainers.txt`): the section ID is `[TrainerType,Name]` (comma inside the
-brackets — the trainer type must exist in `PBS/trainer_types.txt`), and `Pokemon =` lines
-repeat once per party member with **indented** sub-fields underneath:
+brackets — the trainer type must exist in `PBS/trainer_types.txt`, e.g. the real
+`[BUGCATCHER]` entry, "Cazabichos"). Generic trainer classes reuse the SAME type across every
+named individual — never invent a per-instance type like `BUGCATCHER_Rick` (verified: this
+fails PBS compilation with `RuntimeError: Valor X no definido en GameData::TrainerType`,
+caught in the Fase 7 golden-path test). Only unique trainers (gym leaders, rivals) get their
+own dedicated type, and only because `trainer_types.txt` defines that exact ID (e.g.
+`LEADER_Brock`) — grep `trainer_types.txt` before writing any trainer entry. `Pokemon =`
+lines repeat once per party member with **indented** sub-fields underneath:
 ```
-[BUGCATCHER_Rick,Rick]
+[BUGCATCHER,Rick]
 Items = ANTIDOTE
 Pokemon = CATERPIE,7
 Pokemon = WEEDLE,7

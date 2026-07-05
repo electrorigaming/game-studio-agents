@@ -1,7 +1,14 @@
 # Trainer: [Name]
 
 ## Basic Info
-- **Trainer Type**: [type ID, must exist in `PBS/trainer_types.txt`, e.g. `LEADER_Brock`]
+- **Trainer Type**: [type ID, MUST already exist in `PBS/trainer_types.txt` — never invent one].
+  Generic trainer classes share one existing type across many named individuals (e.g. the
+  real `[BUGCATCHER]` type is reused for every Bug Catcher — do NOT invent
+  `BUGCATCHER_<Name>` per instance, that type won't exist and the PBS compiler will reject
+  it). Unique named trainers (gym leaders, rivals) genuinely do get their own dedicated
+  type, e.g. `LEADER_Brock` — but that's because `trainer_types.txt` defines that exact ID,
+  not a general naming convention. Grep `PBS/trainer_types.txt` for the class before writing
+  the entry.
 - **Name**: [in-game display name]
 - **Role**: [e.g., Gym Leader, Rival, Generic trainer]
 

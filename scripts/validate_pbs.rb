@@ -166,11 +166,18 @@ def check_trainers_crossrefs(sections, filename, errors)
   pokemon_path = File.join(PBS_DIR, "pokemon.txt")
   moves_path = File.join(PBS_DIR, "moves.txt")
   items_path = File.join(PBS_DIR, "items.txt")
+  trainer_types_path = File.join(PBS_DIR, "trainer_types.txt")
   species_ids = File.exist?(pokemon_path) ? parse_flat(File.readlines(pokemon_path)).map(&:id).to_h { |id| [id, true] } : {}
   move_ids = File.exist?(moves_path) ? parse_flat(File.readlines(moves_path)).map(&:id).to_h { |id| [id, true] } : {}
   item_ids = File.exist?(items_path) ? parse_flat(File.readlines(items_path)).map(&:id).to_h { |id| [id, true] } : {}
+  trainer_type_ids = File.exist?(trainer_types_path) ? parse_flat(File.readlines(trainer_types_path)).map(&:id).to_h { |id| [id, true] } : {}
 
   sections.each do |sec|
+    trainer_type = sec.id.split(",").first
+    if trainer_type && !trainer_type_ids.key?(trainer_type)
+      errors << "#{filename}:#{sec.line_no} [#{sec.id}] Trainer type not defined in trainer_types.txt: #{trainer_type}"
+    end
+
     (sec.fields["Pokemon"] || []).each do |entry|
       species = entry[:value].split(",").first
       next if species.nil? || species.strip.empty?
