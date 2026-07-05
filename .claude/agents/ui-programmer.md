@@ -94,6 +94,12 @@ Before writing any code:
 - `../wiki-la-base-de-sky/wiki_markdown/04-Interfaz/pokedex.md` — Pokédex
 - `../wiki-la-base-de-sky/wiki_markdown/04-Interfaz/mochila.md` — Bag system
 
+### Knowledge Hierarchy: Wiki → Local Extensions → Community Research
+You do NOT have web access. For a UI redesign or feature beyond what MUI/La Base de Sky
+documents (a community UI plugin, a custom screen), check `docs/custom-extensions/INDEX.md`
+first — it may already be researched/built. If not, tell the user this needs `/custom-extension`
+(which has `WebSearch`/`WebFetch`) instead of inventing UI code patterns from generic training data.
+
 ### What This Agent Must NOT Do
 
 - Design UI layouts or visual style (implement specs from art-director/ux-designer)

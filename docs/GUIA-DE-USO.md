@@ -10,8 +10,10 @@ punto de partida: el siguiente comando útil es `/brainstorm`.
 
 Esta guía explica: (1) los conceptos básicos de cómo funciona el framework, (2) el protocolo de
 colaboración, (3) el catálogo completo de agentes, (4) el catálogo completo de skills, (5) el
-paso a paso recomendado para diseñar y construir tu juego con La Base de Sky, y (6) qué se hace
-por código/PBS vs. qué se hace en el editor gráfico de RPG Maker XP.
+paso a paso recomendado para diseñar y construir tu juego con La Base de Sky, (6) qué se hace
+por código/PBS vs. qué se hace en el editor gráfico de RPG Maker XP, y (7) cómo incorporar
+funcionalidades que no están en la wiki oficial (plugins de la comunidad, minijuegos, rediseños
+de UI).
 
 ---
 
@@ -120,7 +122,7 @@ Esto ya se verificó funcionando en la Fase 7 (ver `production/verificacion-fase
 
 ---
 
-## 4. Catálogo de skills (81 disponibles)
+## 4. Catálogo de skills (82 disponibles)
 
 ### Arranque y diagnóstico
 | Skill | Qué hace |
@@ -183,7 +185,8 @@ Esto ya se verificó funcionando en la Fase 7 (ver `production/verificacion-fase
 | `/validate-pbs [archivo\|all]` | Valida sintaxis PBS y referencias cruzadas con el script determinista `scripts/validate_pbs.rb` — **ejecútalo después de cualquier cambio a PBS** |
 | `/story-done` | Revisión de fin de historia — verifica criterios de aceptación |
 | `/code-review` | Revisión arquitectónica y de calidad para RGSS/PBS |
-| `/editor-guide [tarea]` | Instrucciones paso a paso para tareas que se hacen en el **editor gráfico de RPG Maker XP** (Base de Datos, editor de mapas) — ver sección 7 |
+| `/editor-guide [tarea]` | Instrucciones paso a paso para tareas que se hacen en el **editor gráfico de RPG Maker XP** (Base de Datos, editor de mapas) — ver sección 6 |
+| `/custom-extension [idea]` | Implementa algo que **no está en la wiki oficial** (plugin de la comunidad, minijuego, rediseño de UI) — investiga fuentes reales y deja un registro reusable, ver sección 7 |
 
 ### QA y testing
 | Skill | Qué hace |
@@ -312,7 +315,43 @@ Usa **`/editor-guide [tarea]`** para pedir instrucciones paso a paso de cualquie
 tareas bajo demanda — nunca escribe archivos, solo te guía. Tabla completa y el patrón de
 instrucciones en `.claude/docs/rpgmaker-editor-guide.md`.
 
-## 7. Notas prácticas
+## 7. Funcionalidades que no están en la guía de La Base de Sky (extensiones custom)
+
+El desarrollo real de un fangame constantemente necesita cosas que la wiki oficial no cubre:
+un plugin de la comunidad, un minijuego propio, un rediseño de UI. Los agentes especialistas
+(`essentials-specialist`, `ruby-rgss-specialist`, `ui-programmer`...) **no tienen acceso a
+internet** a propósito — para evitar que inventen sintaxis de memoria en vez de verificarla.
+
+Usa **`/custom-extension [idea]`** para esto. Es el único skill con `WebSearch`/`WebFetch`:
+investiga fuentes reales (Relic Castle, PokéCommunity, GitHub), propone un enfoque siguiendo
+el protocolo normal de colaboración, delega la implementación al especialista correcto, y deja
+un **registro reusable** para que no haya que re-investigar la próxima vez.
+
+### Si ya tienes una fuente (enlace, notas, scripts)
+
+No hace falta que el skill busque desde cero si tú ya encontraste algo. Déjalo en
+`docs/custom-extensions/incoming/[nombre-funcionalidad]/`:
+- `notas.md` — el enlace y una descripción (el mínimo útil si solo tienes un link)
+- `scripts/` — cualquier archivo `.rb` que ya hayas descargado (se revisan antes de usarse, no
+  se ejecutan a ciegas)
+- cualquier `.md` que quieras pegar como referencia (el README del plugin, un post de foro)
+
+Ver `docs/custom-extensions/incoming/_ejemplo/` para la estructura exacta. Luego corre
+`/custom-extension [nombre-funcionalidad]` y el skill usa ese material como fuente principal.
+
+### Qué queda después
+
+- **`docs/custom-extensions/[slug].md`** — un registro por funcionalidad implementada: qué es,
+  qué fuentes se usaron, cómo funciona, qué archivos se tocaron, y si es candidata a subirse
+  a la wiki de la comunidad en una futura actualización.
+- **`docs/custom-extensions/INDEX.md`** — lista de todo lo ya construido, para no re-investigar.
+
+**Importante**: esto es un registro local, no se integra automáticamente a la wiki-reference.md
+ni a las reglas del framework — eso queda como una decisión deliberada para una futura sesión de
+mantenimiento (como una mini versión de las sesiones de adaptación documentadas en
+`design/PLAN-IMPLEMENTACION-CC.md`), pero con toda la investigación ya lista para acelerarla.
+
+## 8. Notas prácticas
 
 - **Rutas a los repos hermanos**: siempre `../la-base-de-sky/...` y `../wiki-la-base-de-sky/...`
   (con `../`) porque Claude Code corre desde `game-studio-agents/`.
@@ -329,6 +368,9 @@ instrucciones en `.claude/docs/rpgmaker-editor-guide.md`.
 - **Nadie comitea sin que tú lo pidas** — si quieres que se guarde el trabajo, dilo explícitamente.
 - **Subagentes vs. skills**: los skills son flujos que tú invocas; los agentes son especialistas
   que los skills (o tú directamente, pidiéndomelo) invocan para una tarea puntual.
+- **Los especialistas técnicos no tienen internet a propósito** — si algo no está en la wiki,
+  usa `/custom-extension` (el único skill con `WebSearch`/`WebFetch`) en vez de pedírselo
+  directamente a `essentials-specialist`/`ruby-rgss-specialist`/`ui-programmer`.
 
 ---
 
@@ -338,4 +380,5 @@ instrucciones en `.claude/docs/rpgmaker-editor-guide.md`.
 - `.claude/docs/wiki-reference.md` — índice de la wiki por dominio
 - `.claude/docs/technical-preferences.md` — stack técnico y convenciones completas
 - `.claude/docs/rpgmaker-editor-guide.md` — tareas del editor RPG Maker XP (Base de Datos, mapas)
+- `docs/custom-extensions/INDEX.md` — funcionalidades custom ya implementadas o investigadas
 - `design/PLAN-IMPLEMENTACION-CC.md` — el plan de adaptación completo (histórico)

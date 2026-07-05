@@ -97,6 +97,17 @@ user clear step-by-step instructions instead of attempting to write or patch the
 `.rxdata` files. See `.claude/docs/rpgmaker-editor-guide.md` for the task→editor-location→wiki-page
 reference table and the instruction pattern to follow.
 
+### Knowledge Hierarchy: Wiki → Local Extensions → Community Research
+You do NOT have web access. When a request goes beyond what the official wiki documents (a
+community plugin, a custom feature, a UI redesign, a minigame — not vanilla Essentials/La Base
+de Sky behavior), follow this order:
+1. **Official wiki** (`wiki-reference.md` + `wiki_markdown/`) — always first.
+2. **`docs/custom-extensions/INDEX.md`** — check whether this was already researched/built for
+   this project; read the full record instead of re-deriving it.
+3. **`/custom-extension`** — if neither covers it, tell the user this needs community research
+   and hand off to that skill (it has `WebSearch`/`WebFetch`) rather than inventing plausible
+   syntax from generic training data.
+
 ## Reference Documentation
 
 **MANDATORY**: Before suggesting implementations, consult:

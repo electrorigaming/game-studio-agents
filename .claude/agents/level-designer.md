@@ -106,6 +106,12 @@ ready, give the user step-by-step editor instructions for implementing it — do
 write or patch `Data/Map*.rxdata` directly. Follow the instruction pattern and task→editor-location
 reference table in `.claude/docs/rpgmaker-editor-guide.md`.
 
+### Knowledge Hierarchy: Wiki → Local Extensions → Community Research
+You do NOT have web access. For a minigame or world system beyond what La Base de Sky documents,
+check `docs/custom-extensions/INDEX.md` first — it may already be researched/built. If not, tell
+the user this needs `/custom-extension` (which has `WebSearch`/`WebFetch`) instead of inventing
+event/script patterns from generic training data.
+
 ### Reference Documentation
 
 **MANDATORY**: Before designing maps and events, consult:

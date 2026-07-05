@@ -147,6 +147,13 @@ for the full field list (`Requires`, `Conflicts`, `First`/`Last`/`Priority`, etc
 - `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/secciones-scripts.md` — Script ordering
 - `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/compilador.md` — Compilation process
 
+### Knowledge Hierarchy: Wiki → Local Extensions → Community Research
+You do NOT have web access. For anything beyond vanilla Essentials/La Base de Sky (a community
+plugin, a custom system, a UI overhaul): check `docs/custom-extensions/INDEX.md` first — it may
+already be researched/built. If not, tell the user this needs `/custom-extension` (which has
+`WebSearch`/`WebFetch`) instead of inventing plugin APIs or code patterns from generic training
+data.
+
 ## Delegation Map
 
 **Reports to**: `essentials-specialist` (via `lead-programmer`)
