@@ -11,9 +11,10 @@ punto de partida: el siguiente comando útil es `/brainstorm`.
 Esta guía explica: (1) los conceptos básicos de cómo funciona el framework, (2) el protocolo de
 colaboración, (3) el catálogo completo de agentes, (4) el catálogo completo de skills, (5) el
 paso a paso recomendado para diseñar y construir tu juego con La Base de Sky, (6) qué se hace
-por código/PBS vs. qué se hace en el editor gráfico de RPG Maker XP, y (7) cómo incorporar
+por código/PBS vs. qué se hace en el editor gráfico de RPG Maker XP, (7) cómo incorporar
 funcionalidades que no están en la wiki oficial (plugins de la comunidad, minijuegos, rediseños
-de UI).
+de UI), y (9) cómo actualizar los repos y el framework cuando sale una versión nueva de La Base
+de Sky o de su wiki.
 
 ---
 
@@ -386,6 +387,31 @@ mantenimiento (como una mini versión de las sesiones de adaptación documentada
   fusiona `main` HACIA la rama del juego, nunca al revés. `/dev-story` verifica/crea la rama de
   epic automáticamente. Ver `.claude/docs/technical-preferences.md` § Version Control Strategy.
 
+## 9. Actualizaciones: integrar cambios de La Base de Sky o de la wiki
+
+Cuando el autor de La Base de Sky publica una versión nueva, o la wiki cambia, hay **tres pasos
+independientes** (guía completa en `.claude/docs/actualizaciones-la-base-de-sky.md`):
+
+1. **Actualizar `wiki-la-base-de-sky`** — `/setup-engine refresh` (corre el scraper y compara
+   versiones), o manualmente `python updater_wiki/descargar_wiki.py` + commit.
+2. **Actualizar `la-base-de-sky`** — primero `main ← upstream/main`; si es un cambio de versión,
+   `/setup-engine upgrade [vieja] [nueva]` (audita `Plugins/`/`PBS/` en busca de campos
+   deprecados); luego, **por cada** `game/[nombre-del-juego]` ya en marcha, `git merge main`
+   (resolver conflictos, `/validate-pbs all`, playtest antes de dar por buena la actualización).
+   Si hay `epic/*` en curso sin fusionar, avisa antes de tocarlos.
+3. **Pedirme que revise los cambios y los integre al framework** — no hay un skill dedicado
+   todavía para esto (es una mini versión de las Fases 1-7 de
+   `design/PLAN-IMPLEMENTACION-CC.md`). El patrón: diff dirigido de la wiki entre el commit
+   anterior y el nuevo (`git diff --name-only` en `../wiki-la-base-de-sky`) → mapear qué páginas
+   cambiaron a qué archivos de `.claude/rules/`, `.claude/agents/`, `.claude/docs/` las citan
+   (vía `.claude/docs/wiki-reference.md`) → re-verificar **solo esos archivos** contra la wiki
+   nueva y, si describen sintaxis o una API, contra el código real en `../la-base-de-sky` — nunca
+   aceptar un cambio de memoria sin verificarlo. Apruebas cada archivo antes de que se escriba;
+   nada se commitea salvo que lo pidas.
+
+**Nunca** fusiones `game/*` o `epic/*` hacia `main` como parte de este proceso — `main` solo
+recibe de `upstream`.
+
 ---
 
 ## Referencias
@@ -394,5 +420,6 @@ mantenimiento (como una mini versión de las sesiones de adaptación documentada
 - `.claude/docs/wiki-reference.md` — índice de la wiki por dominio
 - `.claude/docs/technical-preferences.md` — stack técnico y convenciones completas
 - `.claude/docs/rpgmaker-editor-guide.md` — tareas del editor RPG Maker XP (Base de Datos, mapas)
+- `.claude/docs/actualizaciones-la-base-de-sky.md` — cómo actualizar la wiki, el repo del juego y el framework ante una nueva versión
 - `docs/custom-extensions/INDEX.md` — funcionalidades custom ya implementadas o investigadas
 - `design/PLAN-IMPLEMENTACION-CC.md` — el plan de adaptación completo (histórico)
