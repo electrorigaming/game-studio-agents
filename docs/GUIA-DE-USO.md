@@ -272,22 +272,26 @@ paso 0.
 ### Fase 3 — Preproducción
 11. **`/ux-design`** — pantallas clave (menú, HUD, Pokédex si es custom)
 12. **`/vertical-slice`** — build completo del loop antes de comprometerte a producción
-13. **`/create-epics`** → **`/create-stories [epic]`** → **`/sprint-plan`**
+13. **`/create-epics`** → **`/create-stories [epic]`** → **`/sprint-plan`** — cada epic crea una
+    rama `feature/[epic-slug]` en `la-base-de-sky` (ver sección 8)
 
 ### Fase 4 — Producción (repetir por historia)
 14. **`/story-readiness`** — ¿la historia está lista?
-15. **`/dev-story`** — implementa (rutea automáticamente a `essentials-specialist`,
+15. **`/dev-story`** — verifica que estés en `feature/[epic-slug]` (la crea desde `main` si hace
+    falta) e implementa, ruteando automáticamente a `essentials-specialist`,
     `ruby-rgss-specialist`, `pbs-compiler-specialist`, `level-designer` o `ui-programmer` según
-    el archivo)
+    el archivo
 16. Si tocaste PBS: **`/validate-pbs all`**
 17. Si tocaste scripts: **`/extract-scripts`** (si no estaban ya extraídos) → edita → **`/combine-scripts`**
 18. **`/code-review`** → **`/story-done`**
 19. **`/sprint-status`** para ver el avance general
+20. Cuando todas las historias del epic estén cerradas y probadas en `Game.exe`: fusiona
+    `feature/[epic-slug]` a `main`
 
 ### Fase 5 — Polish y Release
-20. **`/team-polish`**, `/perf-profile`, `/soak-test`
-21. **`/qa-plan`** → **`/smoke-check`** → QA manual
-22. **`/release-checklist`** → **`/launch-checklist`**
+21. **`/team-polish`**, `/perf-profile`, `/soak-test`
+22. **`/qa-plan`** → **`/smoke-check`** → QA manual
+23. **`/release-checklist`** → **`/launch-checklist`**
 
 ---
 
@@ -371,6 +375,10 @@ mantenimiento (como una mini versión de las sesiones de adaptación documentada
 - **Los especialistas técnicos no tienen internet a propósito** — si algo no está en la wiki,
   usa `/custom-extension` (el único skill con `WebSearch`/`WebFetch`) en vez de pedírselo
   directamente a `essentials-specialist`/`ruby-rgss-specialist`/`ui-programmer`.
+- **Una rama por epic en `la-base-de-sky`**: `main` sigue a `upstream/main` y se queda limpio;
+  cada epic vive en `feature/[epic-slug]`, se fusiona cuando sus historias están cerradas y
+  probadas en `Game.exe`. `/dev-story` verifica la rama automáticamente. Ver
+  `.claude/docs/technical-preferences.md` § Version Control Strategy.
 
 ---
 
