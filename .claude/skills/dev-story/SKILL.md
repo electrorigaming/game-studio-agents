@@ -39,14 +39,14 @@ If not found, ask: "Which story are we implementing?" Glob
 
 ### Branch Check (La Base de Sky game repo)
 Before touching any code, check the current branch in `../la-base-de-sky`:
-- Determine the story's epic-slug (from its path, `production/epics/[epic-slug]/...`).
 - Run `git -C ../la-base-de-sky branch --show-current`.
-- If it's not `feature/[epic-slug]`: tell the user and ask before acting —
-  "Estás en la rama `[current]`, no en `feature/[epic-slug]`. ¿Creo/cambio a esa rama antes de
-  implementar?" If the branch doesn't exist yet, offer to create it from `main`
-  (`git -C ../la-base-de-sky checkout main && git -C ../la-base-de-sky checkout -b feature/[epic-slug]`).
-  If `main` isn't up to date with `upstream/main`, flag that too rather than branching from a stale base.
-- Never commit game code/data directly on `main`. See
+- If it's `main` (or anything not matching `game/*`): STOP and ask — "No estamos en una rama de
+  juego. ¿En qué proyecto estamos trabajando? Dame el nombre (ej. `game/mi-juego`) y la creo desde
+  `main` si no existe (`git -C ../la-base-de-sky checkout main && git -C ../la-base-de-sky checkout -b game/[nombre]`)."
+  Never implement directly on `main`.
+- If already on a `game/*` branch, just confirm it's the right one for this story and continue —
+  this branch is permanent, do not create a new branch per epic or per story.
+- This branch is never merged into `main` or into any other `game/*` branch. See
   `.claude/docs/technical-preferences.md` § Version Control Strategy.
 
 ---

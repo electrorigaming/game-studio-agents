@@ -5,18 +5,21 @@
 
 ## Version Control Strategy (la-base-de-sky game repo)
 
-- **`main`** tracks `upstream/main` (the official La Base de Sky community repo) — stays clean,
-  only updated by merging in upstream releases via `/setup-engine upgrade` or `/setup-engine refresh`.
-  Never commit game design/content work directly to `main`.
-- **One branch per epic**: each epic from `/create-epics` gets its own branch,
-  `feature/[epic-slug]` (matching `production/epics/[epic-slug]/` exactly). All of that epic's
-  stories (`/dev-story`) are implemented and committed on this branch.
-- **Merge criteria**: merge an epic branch back into `main` once all its stories pass
-  `/story-done` and the epic has been manually playtested in `Game.exe`.
-- **Branch off `main`, not off another in-progress epic branch** — epics are meant to be
-  independently mergeable; branching off another epic's WIP branch creates merge-order coupling.
+- **`main`** tracks `upstream/main` (the official La Base de Sky community repo) exclusively —
+  it is updated ONLY by merging in upstream releases (via `/setup-engine upgrade` or
+  `/setup-engine refresh`). Never commit any game design/content work to `main`, and never merge
+  a game branch into it.
+- **One permanent branch per game project**: all design/implementation for a given game lives on
+  its own long-lived branch, `game/[nombre-del-juego]` (e.g. `game/mi-juego`). Every epic and
+  story for that game (`/create-epics`, `/dev-story`, etc.) commits directly to this same branch
+  — epics do NOT get their own sub-branch, and this branch is never merged anywhere. It IS the
+  project, indefinitely.
+- **Starting a second, independent game** in the same repo: create another branch from `main`,
+  e.g. `game/mi-juego2`. Game branches never merge into each other or into `main`.
+- **Picking up engine updates**: when `main` advances (new upstream release merged in), merge
+  `main` INTO the game branch to bring in the update — never the other way around.
 - `origin` is the user's own GitLab fork (`electrorigaming/la-base-de-sky`); `upstream` is the
-  community repo (`la-base-de-sky/La-Base-de-Sky`). Push epic branches to `origin`.
+  community repo (`la-base-de-sky/La-Base-de-Sky`). Push the game branch to `origin`.
 
 ## Engine & Language
 
