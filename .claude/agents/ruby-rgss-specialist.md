@@ -97,29 +97,27 @@ end
 ```
 
 ### Plugin Structure
-```ruby
-#==============================================================================
-# ** MiPlugin
-#------------------------------------------------------------------------------
-#  Descripción del plugin.
-#  Autor: [Nombre]
-#  Versión: 1.0
-#  Compatibilidad: La Base de Sky v1.2+ / Pokémon Essentials v21.1
-#==============================================================================
+La Base de Sky uses a `meta.txt`-based plugin format (verified against
+`../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/plugins.md`), NOT the generic
+Essentials `PluginManager.register(...)` header-comment convention:
 
-module MiPlugin
-  VERSION = 1.0
-  
-  def self.mi_funcion
-    # Implementación
-  end
-end
-
-# Register plugin if PluginManager is available
-if defined?(PluginManager)
-  PluginManager.register(:MiPlugin, "1.0", "Descripción", "Autor")
-end
 ```
+Plugins/MiPlugin/
+  meta.txt
+  script1.rb
+  script2.rb
+```
+
+`meta.txt` (Key = Value syntax, same as PBS):
+```
+Name = MiPlugin
+Version = 1.0.0
+Essentials = 21.1
+Credits = [Nombre]
+```
+
+Only `Name`, `Version`, and `Essentials` are required. See `.claude/rules/essentials-plugins.md`
+for the full field list (`Requires`, `Conflicts`, `First`/`Last`/`Priority`, etc.).
 
 ### Essentials API Patterns
 - Use `pbMessage(text)` for dialog boxes, NOT `print` or `puts`

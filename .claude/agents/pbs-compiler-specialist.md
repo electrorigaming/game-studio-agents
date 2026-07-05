@@ -77,59 +77,70 @@ Key2 = Value2
 - **Numbers**: Plain integers or floats (e.g., `Power = 90`, `Height = 0.7`)
 - **Lists**: Comma-separated, NO spaces after commas (e.g., `Types = GRASS,POISON`)
 - **Booleans**: `true` or `false` (lowercase)
-- **Symbols**: UPPERCASE identifiers for references (e.g., `Evolves = CHARMANDER,Level,16`)
+- **Symbols**: UPPERCASE identifiers for references (e.g., `Evolution = CHARMANDER,Level,16`
+  — `Evolutions` plural is also accepted by the compiler as an alias, but `Evolution`
+  singular is the form used throughout this base's real PBS data)
 
 #### Common Patterns
 
-**Pokémon Entry** (`pokemon.txt`):
+Field names below are verified against real entries in `PBS/pokemon.txt`, `PBS/moves.txt`,
+and `PBS/trainers.txt` — do not use generic Essentials field names from memory, this base's
+schema has real differences (e.g. `EVs` not `EVYield`, `TotalPP` not `PP`).
+
+**Pokémon Entry** (`pokemon.txt`, based on the real `[BULBASAUR]` entry):
 ```
 [BULBASAUR]
 Name = Bulbasaur
 Types = GRASS,POISON
-BaseStats = 45,49,49,65,65,65
-EVYield = 0,0,0,0,1,0
-Abilities = OVERGROW,CHLOROPHYLL
-GenderRate = FemaleOneEighth
-GrowthRate = Medium
-BaseEXP = 64
-EffortPoints = 0,0,0,0,1,0
-Happiness = 70
-StepsToHatch = 5355
+BaseStats = 45,49,49,45,65,65
+GenderRatio = FemaleOneEighth
+GrowthRate = Parabolic
+BaseExp = 64
+EVs = SPECIAL_ATTACK,1
+CatchRate = 45
+Happiness = 50
+Abilities = OVERGROW
+HiddenAbilities = CHLOROPHYLL
+EggGroups = Monster,Grass
+HatchSteps = 5120
+Height = 0.7
+Weight = 6.9
 Color = Green
 Shape = Quadruped
 Habitat = Grassland
-Kind = Seed
+Category = Semilla
 Pokedex = A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.
-Metrics = 0.7,6.9,0,0
-WildItemCommon = NONE
-WildItemUncommon = NONE
-WildItemRare = NONE
+Generation = 1
+Evolution = IVYSAUR,Level,16
 ```
+`WildItemCommon`/`WildItemUncommon`/`WildItemRare` are optional — omit any the species doesn't have.
 
-**Move Entry** (`moves.txt`):
+**Move Entry** (`moves.txt`, based on the real `[TACKLE]` entry):
 ```
-[THUNDERBOLT]
-Name = Thunderbolt
-Type = ELECTRIC
-Category = Special
-Power = 90
+[TACKLE]
+Name = Tackle
+Type = NORMAL
+Category = Physical
+Power = 40
 Accuracy = 100
-PP = 15
-Effect = THUNDERBOLT
-EffectChance = 10
-Target = Close
-Priority = 0
-Flags = CanProtect,CanMirrorMove
-Description = A strong electric blast crashes down on the target. This may also leave the target with paralysis.
+TotalPP = 35
+Target = NearOther
+FunctionCode = None
+Flags = Contact,CanProtect,CanMirrorMove
+Description = A physical attack in which the user charges and slams into the target.
 ```
+`Priority` (omit if 0) and `EffectChance` (only for moves with a secondary-effect chance)
+are optional and go between `Target`/`FunctionCode` and `Flags` when present.
 
-**Trainer Entry** (`trainers.txt`):
+**Trainer Entry** (`trainers.txt`): the section ID is `[TrainerType,Name]` (comma inside the
+brackets — the trainer type must exist in `PBS/trainer_types.txt`), and `Pokemon =` lines
+repeat once per party member with **indented** sub-fields underneath:
 ```
-[001]
-Name = Bug Catcher
+[BUGCATCHER_Rick,Rick]
 Items = ANTIDOTE
 Pokemon = CATERPIE,7
 Pokemon = WEEDLE,7
+    Moves = POISONSTING,STRINGSHOT
 ```
 
 ## Validation Checklist
