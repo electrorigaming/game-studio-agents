@@ -27,6 +27,38 @@ Three layers, each with a different lifetime:
 `origin` is the user's own GitLab fork (`electrorigaming/la-base-de-sky`); `upstream` is the
 community repo (`la-base-de-sky/La-Base-de-Sky`). Push the game and epic branches to `origin`.
 
+## Version Control Strategy (game-studio-agents framework repo)
+
+This repo (`game-studio-agents` — the one this file lives in) mirrors the same shape, with
+different meaning per layer:
+
+1. **`main`** tracks `upstream/main` (`Donchitos/Claude-Code-Game-Studios`, the generic
+   multi-engine template) exclusively. Never commit game design content here.
+2. **`adapted-essentials-oc`** — the permanent branch of this La Base de Sky adaptation itself.
+   Holds **only framework-level files**: `.claude/**`, `CLAUDE.md`, `README.md`, `UPGRADING.md`,
+   `docs/GUIA-DE-USO.md`, `docs/actualizaciones-la-base-de-sky.md`, `scripts/validate_pbs.rb`
+   (a generic validator, not tied to one game), and `production/diagnostico-essentials.md` +
+   `production/verificacion-fase7.md` (verification of the adaptation itself, not of a game).
+   Never merged anywhere (not into `main`, not into a `game/*` branch).
+3. **`game/[nombre-del-juego]`** — one permanent branch per game project designed with this
+   framework, branched from `adapted-essentials-oc` (never from `main`). Holds that game's
+   **design/production artifacts only**: `design/**`, `docs/architecture/**`,
+   `docs/custom-extensions/**`, and `production/**` except the two adaptation-verification files
+   listed above. Never merged anywhere.
+   - **Where it's created**: `/brainstorm` checks for/creates this branch before writing
+     `design/gdd/game-concept.md` — see its Branch Check step.
+   - **A second, independent game**: another branch from `adapted-essentials-oc`, e.g.
+     `game/mi-juego2`. Game branches never merge into each other.
+   - **Picking up a framework update** (Paso 4 of `docs/actualizaciones-la-base-de-sky.md`, or
+     any fix committed to `adapted-essentials-oc`): merge `adapted-essentials-oc` INTO each
+     `game/[nombre]` branch — never the other way around.
+
+This is the same shape as the `la-base-de-sky` game repo's model above, one level up: there,
+`main` tracks the community engine and `game/[nombre]` holds the game's code; here, `main` tracks
+the generic template and `game/[nombre]` holds that game's design docs, while
+`adapted-essentials-oc` plays the role `main` plays over there (a stable base everything branches
+from and nothing merges back into).
+
 ## Engine & Language
 
 - **Engine**: RPG Maker XP + Pokémon Essentials v21.1/v22, running on the mkxp-z runtime

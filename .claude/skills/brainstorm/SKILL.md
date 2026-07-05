@@ -3,7 +3,7 @@ name: brainstorm
 description: "Guided Pokémon game concept ideation for La Base de Sky — from zero idea to a structured game concept document. Uses professional studio ideation techniques, player psychology frameworks, and structured creative exploration adapted for Pokémon Essentials."
 argument-hint: "[genre or theme hint, or 'open'] [--review full|lean|solo]"
 user-invocable: true
-allowed-tools: Read, Glob, Grep, Write, WebSearch, Task, AskUserQuestion
+allowed-tools: Read, Glob, Grep, Write, Bash, WebSearch, Task, AskUserQuestion
 model: sonnet
 ---
 
@@ -18,11 +18,26 @@ When this skill is invoked:
 
    See `.claude/docs/director-gates.md` for the full check pattern.
 
-2. **Check for existing concept work**:
+2. **Branch Check (game-studio-agents framework repo)** — before reading or writing anything
+   under `design/`:
+   - Run `git branch --show-current`.
+   - If it's `main`: STOP — never write game design content on `main`. Ask the user to confirm
+     which game this is, then follow the steps below.
+   - If it's `adapted-essentials-oc` (the framework branch): this looks like the start of a new
+     game. Ask the user for the game's name/slug, then create its permanent branch **from
+     `adapted-essentials-oc`** (never from `main`):
+     `git checkout -b game/[nombre-del-juego]`.
+   - If it's already a `game/[nombre-del-juego]` branch: proceed — this is resuming or continuing
+     that game's design work.
+   - See `.claude/docs/technical-preferences.md` § Version Control Strategy (game-studio-agents
+     framework repo) for the full model. `game/[nombre-del-juego]` is never merged anywhere; a
+     framework update on `adapted-essentials-oc` merges INTO it, never the reverse.
+
+3. **Check for existing concept work**:
    - Read `design/gdd/game-concept.md` if it exists (resume, don't restart)
    - Read `design/gdd/game-pillars.md` if it exists (build on established pillars)
 
-3. **Run through ideation phases** interactively, asking the user questions at
+4. **Run through ideation phases** interactively, asking the user questions at
    each phase. Do NOT generate everything silently — the goal is **collaborative
    exploration** where the AI acts as a creative facilitator, not a replacement
    for the human's vision.
@@ -309,7 +324,7 @@ Present the assessment to the user. If UNREALISTIC, offer to adjust the MVP defi
 
 ---
 
-4. **Generate the game concept document** using the template at
+5. **Generate the game concept document** using the template at
    `.claude/docs/templates/game-concept.md`. Fill in ALL sections from the
    brainstorm conversation, including the MDA analysis, player motivation
    profile, and flow state design sections.
@@ -323,7 +338,7 @@ Present the assessment to the user. If UNREALISTIC, offer to adjust the MVP defi
    This section is the seed of the art bible — it captures the "everything must
    move" decision before it can be forgotten between sessions.
 
-5. Use `AskUserQuestion` for write approval:
+6. Use `AskUserQuestion` for write approval:
 - Prompt: "Game concept is ready. May I write it to `design/gdd/game-concept.md`?"
 - Options: `[A] Yes — write it` / `[B] Not yet — revise a section first`
 
@@ -337,7 +352,7 @@ If yes, generate the document using the template at `.claude/docs/templates/game
 
 **Scope consistency rule**: The "Estimated Scope" field in the Core Identity table must match the full-vision timeline from the Scope Tiers section — not just say "Large (9+ months)". Write it as "Large (X–Y months, solo)" or "Large (X–Y months, team of N)" so the summary table is accurate.
 
-6. **Suggest next steps** (in this order — this is the professional studio
+7. **Suggest next steps** (in this order — this is the professional studio
    pre-production pipeline). List ALL steps — do not abbreviate or truncate:
 
 **Path A — Design-First** (recommended if the concept is well-defined):
@@ -359,7 +374,7 @@ If yes, generate the document using the template at `.claude/docs/templates/game
    4. "If prototype PIVOTS: return to `/brainstorm` with the learnings and reshape the concept"
    5. "After full design and architecture, build the `/vertical-slice` to validate production readiness before committing to sprints"
 
-7. **Output a summary** with the chosen concept's elevator pitch, pillars,
+8. **Output a summary** with the chosen concept's elevator pitch, pillars,
    primary player type, platform target, biggest risk, and file path.
 
 Verdict: **COMPLETE** — game concept created and handed off for next steps.

@@ -252,8 +252,9 @@ paso 0.
 
 ### Fase 1 — Concepto
 1. **`/brainstorm open`** (o con una pista, p. ej. `/brainstorm cozy`) — el paso siguiente
-   inmediato. Genera `design/gdd/game-concept.md` con pilares, fantasía central, y una
-   "ancla de identidad visual".
+   inmediato. Primero verifica/crea la rama permanente de este juego en `game-studio-agents`
+   (`game/[nombre-del-juego]`, desde `adapted-essentials-oc`), luego genera
+   `design/gdd/game-concept.md` con pilares, fantasía central, y una "ancla de identidad visual".
 2. **`/art-bible`** — identidad visual, antes de escribir ningún GDD
 3. **`/prototype [mecánica-central]`** — si la mecánica core no está probada, valida que es
    divertida antes de invertir en diseño completo (para Essentials, esto puede ser tan simple
@@ -386,6 +387,14 @@ mantenimiento (como una mini versión de las sesiones de adaptación documentada
   visualización del historial. Si `main` avanza con una actualización de la comunidad, se
   fusiona `main` HACIA la rama del juego, nunca al revés. `/dev-story` verifica/crea la rama de
   epic automáticamente. Ver `.claude/docs/technical-preferences.md` § Version Control Strategy.
+- **`game-studio-agents` (este repo) usa el mismo modelo**: `main` sigue solo a su propio
+  `upstream` (la plantilla genérica); `adapted-essentials-oc` es la rama permanente de esta
+  adaptación y solo contiene archivos del framework (`.claude/**`, `CLAUDE.md`, docs de nivel
+  framework); cada juego que diseñes con este framework vive en su propia rama permanente
+  `game/[nombre-del-juego]` (creada desde `adapted-essentials-oc`, nunca desde `main`), que
+  guarda `design/`, `production/` (salvo los docs de verificación de la adaptación),
+  `docs/architecture/` y `docs/custom-extensions/` de ese juego. Nunca se fusiona a ningún lado.
+  `/brainstorm` verifica/crea esta rama automáticamente antes de escribir `game-concept.md`.
 
 ## 9. Actualizaciones: integrar cambios de La Base de Sky o de la wiki
 
@@ -427,7 +436,8 @@ un cambio genérico/transversal (skill de coordinación, hook, plantilla, bug fi
 fusionar a `adapted-essentials-oc`, verificando que no choque con lo ya adaptado a La Base de
 Sky). `UPGRADING.md` (heredado de la plantilla) ya documenta versión por versión qué archivos
 son "Safe to overwrite" vs "Merge carefully" — es el punto de partida para pedirme esa
-clasificación.
+clasificación. Después de fusionar lo genérico a `adapted-essentials-oc`, propágalo a cada
+`game/[nombre-del-juego]` ya en marcha con `git merge adapted-essentials-oc` (nunca al revés).
 
 ---
 

@@ -159,7 +159,14 @@ con otro significado:
 | `origin` | tu fork (`electrorigaming/la-base-de-sky`) | tu fork (`electrorigaming/game-studio-agents`) |
 | `upstream` | comunidad La Base de Sky | `Donchitos/Claude-Code-Game-Studios` — la plantilla genérica multi-motor original |
 | `main` | solo recibe de `upstream` | solo recibe de `upstream` |
-| rama permanente | `game/[nombre-del-juego]` | `adapted-essentials-oc` — esta adaptación a La Base de Sky, nunca se fusiona a `main` |
+| rama de adaptación | *(no existe esta capa)* | `adapted-essentials-oc` — esta adaptación a La Base de Sky (solo `.claude/**` y docs de framework), nunca se fusiona a `main` |
+| rama por juego | `game/[nombre-del-juego]` (desde `main`) | `game/[nombre-del-juego]` (desde `adapted-essentials-oc`) — guarda `design/`, `production/`, `docs/architecture/`, `docs/custom-extensions/` de ese juego |
+
+`game-studio-agents` tiene una capa extra respecto a `la-base-de-sky`: aquí `adapted-essentials-oc`
+hace de "base estable" para las ramas de juego, jugando el mismo papel que `main` juega en
+`la-base-de-sky`. `/brainstorm` verifica/crea `game/[nombre-del-juego]` automáticamente antes de
+escribir `design/gdd/game-concept.md` — ver `.claude/docs/technical-preferences.md` § Version
+Control Strategy (game-studio-agents framework repo).
 
 `upstream/Claude-Code-Game-Studios` no sabe nada de Pokémon ni de La Base de Sky: sigue
 evolucionando como framework genérico para **cualquier motor** (Godot, Unity, Unreal,
@@ -219,6 +226,21 @@ archivo antes de escribir, igual que en el Paso 3.
 `adapted-essentials-oc` **nunca se fusiona de vuelta a `main`** — mismo principio que
 `game/[nombre-del-juego]` en `la-base-de-sky`.
 
+### 4.4 — Propaga la actualización a cada `game/[nombre-del-juego]` ya en marcha
+
+Igual que el Paso 2.3, pero un nivel más abajo:
+
+```bash
+git checkout game/[nombre-del-juego]
+git merge adapted-essentials-oc
+```
+
+Resuelve conflictos si el juego personalizó algo que el framework también tocó (poco común,
+porque `game/[nombre-del-juego]` solo debería tener `design/`, `production/`,
+`docs/architecture/`, `docs/custom-extensions/` — sin overlap de archivos con
+`adapted-essentials-oc` salvo que alguien haya escrito fuera de esas carpetas). `game/[nombre]`
+tampoco se fusiona nunca de vuelta a `adapted-essentials-oc` ni a `main`.
+
 ---
 
 ## Checklist resumen
@@ -236,7 +258,8 @@ archivo antes de escribir, igual que en el Paso 3.
 2. [ ] Clasificación por archivo: (a) específico de Godot/Unity/Unreal → ignorar/`disabled/`,
        (b) genérico/transversal → candidato a fusionar
 3. [ ] Fusionar solo (b) a `adapted-essentials-oc`, resolviendo conflictos contra lo ya adaptado
-4. [ ] Aprobación y (si se pide) commit
+4. [ ] Cada `game/[nombre-del-juego]` ← `adapted-essentials-oc`
+5. [ ] Aprobación y (si se pide) commit
 
 ## Qué NO hacer
 
@@ -244,6 +267,8 @@ archivo antes de escribir, igual que en el Paso 3.
   "sincronizar".
 - No fusiones `adapted-essentials-oc` (la rama de esta adaptación) hacia `main` de
   `game-studio-agents` — mismo principio, en el otro repo.
+- No fusiones ningún `game/[nombre-del-juego]` de `game-studio-agents` hacia `adapted-essentials-oc`
+  ni hacia `main` — es de solo lectura para ellos (reciben actualizaciones, no las envían).
 - No aceptes una regla/dato nuevo del framework solo porque la wiki lo dice — si toca sintaxis o
   una API, verifícalo también contra el código real (mismo principio que el caso
   `Evolution`/`Evolutions` en `.claude/rules/pbs-files.md`).
