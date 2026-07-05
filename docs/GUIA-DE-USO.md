@@ -1,5 +1,8 @@
 # Guía de Uso — game-studio-agents (adaptado para La Base de Sky)
 
+> **Versión navegable (Artifact)**: https://claude.ai/code/artifact/1e1fe080-8828-4eab-84d5-8cb93210a655
+> — mismo contenido, con índice lateral fijo y navegación por sección.
+
 **Estado actual del proyecto** (2026-07-05): el framework está completamente adaptado y
 verificado (ver `production/verificacion-fase7.md`), pero el juego en sí **todavía no está
 diseñado** — no existe `design/gdd/game-concept.md`, no hay GDDs, no hay sprints. Estás en el
