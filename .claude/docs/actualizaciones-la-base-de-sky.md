@@ -1,6 +1,6 @@
 # Actualizar La Base de Sky, los juegos ya creados, y el framework
 
-Guía paso a paso para dos disparadores distintos de actualización:
+Guía paso a paso para tres disparadores distintos de actualización:
 
 - **La Base de Sky o su wiki cambian** (Pasos 1-3): qué hacer con `wiki-la-base-de-sky`, con
   `la-base-de-sky` (rama `main` y cada `game/[nombre-del-juego]`), y con las reglas/agentes/docs
@@ -8,9 +8,12 @@ Guía paso a paso para dos disparadores distintos de actualización:
 - **La plantilla genérica de la que nace `game-studio-agents` cambia** (Paso 4): un disparador
   independiente — no depende de La Base de Sky en absoluto, depende de cuándo el proyecto
   `Donchitos/Claude-Code-Game-Studios` publique una actualización.
+- **Maker Studio publica una release** (Paso 5): también independiente — actualizar el
+  fork/clon `../maker-studio` y, si cambió la integración de La Base de Sky, re-copiar el
+  plugin a cada rama `game/*` que lo tenga instalado.
 
 No hace falta hacer todos los pasos siempre: si solo cambió la wiki (sin nueva versión del
-motor), el Paso 2 no aplica. El Paso 4 es completamente independiente de los Pasos 1-3.
+motor), el Paso 2 no aplica. Los Pasos 4 y 5 son completamente independientes de los Pasos 1-3.
 
 ---
 
@@ -243,6 +246,38 @@ tampoco se fusiona nunca de vuelta a `adapted-essentials-oc` ni a `main`.
 
 ---
 
+## Paso 5 — Actualizar `maker-studio` (el editor)
+
+Disparador independiente: el autor (`Toskan4134/maker-studio`) publica una release nueva. La
+app de escritorio se auto-actualiza sola — este paso es solo para el repo (docs + integraciones)
+y para el plugin instalado en los juegos. Contexto completo: `.claude/docs/maker-studio.md`.
+
+```bash
+cd ../maker-studio
+git fetch upstream
+git checkout main
+git merge upstream/main
+git push origin main
+```
+
+Después del merge, comprueba si cambió la integración de La Base de Sky:
+
+```bash
+git diff "HEAD@{1}" HEAD --stat -- "Integrations/[LBDS1.2.0] Maker Studio/"
+```
+
+- **Si no cambió**: no hay nada más que hacer.
+- **Si cambió**: por cada rama `game/[nombre]` de `la-base-de-sky` que tenga el plugin
+  instalado, re-copia `Integrations/[LBDS1.2.0] Maker Studio/MakerStudio/` sobre
+  `Plugins/MakerStudio/`, revisa el diff, y playtest en `Game.exe` antes de committear.
+- Si el autor publica una integración para una versión nueva de la base (p. ej. `[LBDS1.3.0]`),
+  espera a que el juego esté en esa versión de la base (Paso 2) antes de cambiar de integración.
+- Revisa si el cambio altera las reglas de convivencia documentadas en
+  `.claude/docs/maker-studio.md` (p. ej. si el re-guardado desde RPG Maker XP pasa a estar
+  soportado oficialmente) y actualiza ese doc si aplica.
+
+---
+
 ## Checklist resumen
 
 **Si cambió La Base de Sky o su wiki (Pasos 1-3):**
@@ -260,6 +295,12 @@ tampoco se fusiona nunca de vuelta a `adapted-essentials-oc` ni a `main`.
 3. [ ] Fusionar solo (b) a `adapted-essentials-oc`, resolviendo conflictos contra lo ya adaptado
 4. [ ] Cada `game/[nombre-del-juego]` ← `adapted-essentials-oc`
 5. [ ] Aprobación y (si se pide) commit
+
+**Si Maker Studio publicó una release (Paso 5, independiente):**
+1. [ ] `main ← upstream/main` en `../maker-studio` (la app de escritorio se auto-actualiza sola)
+2. [ ] ¿Cambió `Integrations/[LBDS1.2.0]`? → re-copiar el plugin a cada `game/*` que lo tenga
+       instalado + playtest en `Game.exe`
+3. [ ] ¿Cambian las reglas de convivencia? → actualizar `.claude/docs/maker-studio.md`
 
 ## Qué NO hacer
 
@@ -283,6 +324,8 @@ tampoco se fusiona nunca de vuelta a `adapted-essentials-oc` ni a `main`.
 ## Referencias
 
 - `.claude/docs/technical-preferences.md` § Version Control Strategy — modelo de 3 capas de ramas
+- `.claude/docs/maker-studio.md` — Maker Studio: instalación, convivencia con RPG Maker XP,
+  modelo de repos (Paso 5)
 - `.claude/skills/setup-engine/SKILL.md` — `/setup-engine refresh` y `/setup-engine upgrade`
 - `.claude/docs/wiki-reference.md` — índice agente ↔ página de wiki
 - `UPGRADING.md` — historial versión por versión de la plantilla genérica (Safe to overwrite /

@@ -1,6 +1,6 @@
 ---
 name: editor-guide
-description: Step-by-step instructions for tasks that require the RPG Maker XP editor GUI (Database, Map Editor) instead of a text file or script
+description: Step-by-step instructions for tasks that require an editor GUI — RPG Maker XP or Maker Studio (Database, Map Editor) — instead of a text file or script
 argument-hint: "[tarea]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep
@@ -9,10 +9,11 @@ model: sonnet
 
 # Editor Guide
 
-Give the user step-by-step instructions for a task that lives in the RPG Maker XP editor's GUI
-(Database, Map Editor, event placement) rather than in a text file, PBS entry, or Ruby script.
-This skill never writes or edits any file — it only produces instructions for the user to follow
-in RPG Maker XP themselves.
+Give the user step-by-step instructions for a task that lives in an editor GUI — RPG Maker XP or
+Maker Studio (Database, Map Editor, event placement) — rather than in a text file, PBS entry, or
+Ruby script. This skill never writes or edits any file — it only produces instructions for the
+user to follow in the editor themselves. If the task can be done in both editors, ask which one
+the user prefers (see the per-task coverage column in `.claude/docs/rpgmaker-editor-guide.md`).
 
 ## Workflow
 
@@ -25,6 +26,9 @@ in RPG Maker XP themselves.
 - Read the wiki page(s) the reference table points to (`../wiki-la-base-de-sky/wiki_markdown/...`)
   for the authoritative step-by-step process. Do not invent steps from memory or generic RPG
   Maker XP knowledge — this project's exact menu paths and field names come from the wiki.
+- If the task will be done in **Maker Studio** (user preference or MS-exclusive feature), the
+  authoritative source is its user guide in `../maker-studio/docs/es/` (Spanish) instead —
+  plus `.claude/docs/maker-studio.md` for install state and coexistence rules with RPG Maker XP.
 
 ### 3. Give instructions
 Follow the instruction pattern from `.claude/docs/rpgmaker-editor-guide.md`:
@@ -47,4 +51,6 @@ protocol (draft → approve → write).
 
 ## Reference
 - `.claude/docs/rpgmaker-editor-guide.md` — task → editor location → wiki page table
+- `.claude/docs/maker-studio.md` — Maker Studio: coverage, install, coexistence rules
+- `../maker-studio/docs/es/` — Maker Studio user guides (Spanish)
 - `../wiki-la-base-de-sky/wiki_markdown/01-Inicio/01-Inicio/instalacion.md` — opening the project

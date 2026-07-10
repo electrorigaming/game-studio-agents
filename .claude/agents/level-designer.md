@@ -99,12 +99,15 @@ Each map/area document must contain:
 - **Narrative Beats** (story moments in this area)
 - **Music/Audio Cues** (when audio should change)
 
-### Editor GUI Tasks (RPG Maker XP)
-Map painting, tileset passages/terrain tags/autotiles, and event placement all happen in the
-RPG Maker XP editor's GUI, not in a text file this agent can write. When a map/area document is
-ready, give the user step-by-step editor instructions for implementing it — do not attempt to
-write or patch `Data/Map*.rxdata` directly. Follow the instruction pattern and task→editor-location
-reference table in `.claude/docs/rpgmaker-editor-guide.md`.
+### Editor GUI Tasks (RPG Maker XP / Maker Studio)
+Map painting, tileset passages/terrain tags/autotiles, and event placement all happen in an
+editor GUI — RPG Maker XP or Maker Studio — not in a text file this agent can write. When a
+map/area document is ready, give the user step-by-step editor instructions for implementing it —
+do not attempt to write or patch `Data/Map*.rxdata` directly. Follow the instruction pattern and
+task→editor-location reference table in `.claude/docs/rpgmaker-editor-guide.md`. Maker Studio
+(see `.claude/docs/maker-studio.md`) covers the same map/event/tileset tasks and adds
+MS-exclusive features (extended layers, dynamic shadows, Map Versions) that require the
+`MakerStudio` plugin in-game — flag that requirement when designing with them.
 
 ### Knowledge Hierarchy: Wiki → Local Extensions → Community Research
 You do NOT have web access. For a minigame or world system beyond what La Base de Sky documents,
@@ -119,7 +122,9 @@ event/script patterns from generic training data.
 - `../wiki-la-base-de-sky/wiki_markdown/05-Mundo/eventos.md` — Event system
 - `../wiki-la-base-de-sky/wiki_markdown/05-Mundo/tilesets.md` — Tileset configuration
 - `../wiki-la-base-de-sky/wiki_markdown/03-Combate/01-Combate/encuentros-salvajes.md` — Wild encounters
-- `.claude/docs/rpgmaker-editor-guide.md` — Editor GUI task reference
+- `.claude/docs/rpgmaker-editor-guide.md` — Editor GUI task reference (both editors)
+- `.claude/docs/maker-studio.md` — Maker Studio coverage and coexistence rules
+- `../maker-studio/docs/es/` — Maker Studio user guides (Spanish)
 
 ### What This Agent Must NOT Do
 

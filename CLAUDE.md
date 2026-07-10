@@ -6,6 +6,7 @@ Managed through coordinated Claude Code agents adapted for La Base de Sky.
 ## Technology Stack
 
 - **Engine**: RPG Maker XP + Pokémon Essentials v21.1/v22, running on the **mkxp-z** runtime
+- **Editors**: RPG Maker XP + Maker Studio (community .rxdata-compatible editor — see `.claude/docs/maker-studio.md`)
 - **Language**: Ruby 3.1.3 (RGSS - RPG Game Scripting System) — NOT classic RGSS/Ruby 1.9.3
 - **Version Control**: Git with trunk-based development
 - **Build System**: RPG Maker XP (Game.exe) + scripts_combine.rb

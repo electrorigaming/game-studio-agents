@@ -59,9 +59,22 @@ the generic template and `game/[nombre]` holds that game's design docs, while
 `adapted-essentials-oc` plays the role `main` plays over there (a stable base everything branches
 from and nothing merges back into).
 
+## Version Control Strategy (maker-studio editor repo)
+
+`../maker-studio` (sibling clone) hosts the Maker Studio editor's docs + game-side integrations —
+see `.claude/docs/maker-studio.md`. Same remote model as the other repos: `origin` is the user's
+fork (`electrorigaming/maker-studio`, GitHub), `upstream` is the author's repo
+(`Toskan4134/maker-studio`), and `main` is updated ONLY by merging `upstream/main`. No adaptation
+or `game/*` branches exist here: what a game installs is a COPY of the integration's plugin
+folder, committed on that game's `game/[nombre]` branch in `la-base-de-sky` — never in this repo
+and never in `la-base-de-sky`'s `main`. Update flow: Paso 5 of
+`.claude/docs/actualizaciones-la-base-de-sky.md`.
+
 ## Engine & Language
 
 - **Engine**: RPG Maker XP + Pokémon Essentials v21.1/v22, running on the mkxp-z runtime
+- **Editors**: RPG Maker XP (official GUI) + Maker Studio (community editor, .rxdata-compatible —
+  see `.claude/docs/maker-studio.md` for coverage, coexistence rules, and install steps)
 - **Language**: Ruby 3.1.3 (verified via `x64-msvcrt-ruby310.dll` in the base install — NOT classic RGSS/Ruby 1.9.3)
 - **Rendering**: N/A — mkxp-z's built-in 2D sprite/viewport renderer (no custom shader pipeline; `shader-code.md` rule was removed for this reason)
 - **Physics**: N/A — no physics engine; RPG Maker XP uses tile-based grid movement and passability maps
@@ -105,7 +118,10 @@ from and nothing merges back into).
 ## Allowed Libraries / Addons
 
 <!-- Add approved third-party dependencies here -->
-- [None configured yet — add as dependencies are approved]
+- **MakerStudio plugin** (from `Toskan4134/maker-studio`, GPL-3.0) — approved 2026-07-10.
+  Integration `[LBDS1.2.0]`, install target `Plugins/MakerStudio/` in the game repo, committed
+  only on `game/*` branches. Editor app installed separately (auto-updates). See
+  `.claude/docs/maker-studio.md`.
 
 ## Architecture Decisions Log
 

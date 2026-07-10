@@ -60,11 +60,21 @@ Ask: "Would you like me to test script extraction now?"
 - If yes: Run `/extract-scripts`
 - Verify extraction successful
 
+### 4b. Offer Maker Studio (optional second editor)
+- Check whether `../maker-studio/` exists (the sibling clone of the Maker Studio editor repo).
+- If it exists, remind the user that two editors are available for maps/events/tilesets:
+  RPG Maker XP and Maker Studio. Point to `.claude/docs/maker-studio.md` for the install steps
+  (editor app + `MakerStudio` plugin) and the coexistence rules.
+- The plugin is committed only on `game/*` branches of `la-base-de-sky` — never on `main`.
+  If no `game/*` branch exists yet, installation stays documented-only until `/brainstorm`
+  creates one.
+
 ### 5. Output Summary
 ```
 Essentials Setup Complete
 =========================
 Engine: RPG Maker XP + Pokémon Essentials v21.1/v22
+Editors: RPG Maker XP + Maker Studio ([available/not cloned] — see .claude/docs/maker-studio.md)
 Language: Ruby (RGSS)
 PBS Files: [N] files in PBS/
 Scripts: [Extracted/Not extracted]
@@ -79,3 +89,4 @@ Next Steps:
 ## Reference
 - `../wiki-la-base-de-sky/wiki_markdown/08-Herramientas/` — Tools and configuration
 - `../wiki-la-base-de-sky/wiki_markdown/01-Inicio/01-Inicio/instalacion.md` — Installation guide
+- `.claude/docs/maker-studio.md` — Maker Studio (second editor): install and coexistence rules
